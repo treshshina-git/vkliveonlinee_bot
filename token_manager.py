@@ -15,7 +15,9 @@ _token_expires_at = 0
 
 
 def _request_new_token():
-    credentials = f"{CLIENT_ID}:{CLIENT_SECRET}"
+    credentials = (
+        f"{CLIENT_ID}:{CLIENT_SECRET}"
+    )
 
     encoded = base64.b64encode(
         credentials.encode()
@@ -25,10 +27,12 @@ def _request_new_token():
         TOKEN_URL,
         headers={
             "Authorization": f"Basic {encoded}",
-            "Content-Type": "application/x-www-form-urlencoded"
+            "Content-Type":
+                "application/x-www-form-urlencoded"
         },
         data={
-            "grant_type": "client_credentials"
+            "grant_type":
+                "client_credentials"
         },
         timeout=30
     )
@@ -44,7 +48,6 @@ def get_access_token():
 
     now = int(time.time())
 
-    # запас 60 секунд
     if (
         _cached_token
         and now < (_token_expires_at - 60)
@@ -63,3 +66,11 @@ def get_access_token():
     _token_expires_at = now + expire_time
 
     return _cached_token
+
+
+def clear_token_cache():
+    global _cached_token
+    global _token_expires_at
+
+    _cached_token = None
+    _token_expires_at = 0
