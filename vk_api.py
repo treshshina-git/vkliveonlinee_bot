@@ -1,5 +1,5 @@
 import requests
-from token_manager import get_access_token
+from tok_man import get_access_token
 
 API_URL = "https://apidev.live.vkvideo.ru/v1/catalog/online_channels"
 
