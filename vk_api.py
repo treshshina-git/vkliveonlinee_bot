@@ -1,84 +1,44 @@
 import requests
+from token_manager import get_access_token
 
-from tok_man import get_access_token
+API_URL = "https://apidev.live.vkvideo.ru/v1/catalog/online_channels"
 
-API_URL = (
-    "https://apidev.live.vkvideo.ru"
-    "/v1/catalog/online_channels"
-)
-
-CHAT_RULETTE_CATEGORY_ID = (
-    "6abff723-68ea-4c47-8df1-55573d362749"
-)
+CATEGORY_ID = "6abff723-68ea-4c47-8df1-55573d362749"
 
 
-def _request_streams(access_token):
-    return requests.get(
+def get_online_streams():
+
+    token = get_access_token()
+
+    r = requests.get(
         API_URL,
         headers={
-            "Authorization": f"Bearer {access_token}",
-            "Accept": "application/json"
+            "Authorization": f"Bearer {token}"
         },
         params={
             "limit": 200,
             "offset": 0,
-            "category_id": CHAT_RULETTE_CATEGORY_ID,
+            "category_id": CATEGORY_ID,
             "all_streams": True,
             "has_vk_video": True
         },
         timeout=30
     )
 
+    r.raise_for_status()
 
-def get_online_streams():
-    access_token = get_access_token()
-
-    response = _request_streams(access_token)
-
-    if response.status_code == 401:
-        clear_token_cache()
-
-        access_token = get_access_token()
-
-        response = _request_streams(access_token)
-    print(response.status_code)
-    print(response.text)
-    response.raise_for_status()
-
-    payload = response.json()
+    data = r.json()
 
     result = []
 
-    channels = (
-        payload
-        .get("data", {})
-        .get("channels", [])
-    )
-
-    for item in channels:
-        stream = item.get("stream", {})
-        owner = item.get("owner", {})
-        channel = item.get("channel", {})
+    for item in data["data"]["channels"]:
+        stream = item["stream"]
 
         result.append({
-            "id": stream.get("id"),
-            "title": stream.get(
-                "title",
-                "Без названия"
-            ),
-            "viewers": (
-                stream
-                .get("counters", {})
-                .get("viewers", 0)
-            ),
-            "owner": owner.get(
-                "nick",
-                "Unknown"
-            ),
-            "url": channel.get(
-                "url",
-                ""
-            )
+            "title": stream["title"],
+            "viewers": stream["counters"]["viewers"],
+            "owner": item["owner"]["nick"],
+            "url": item["channel"]["url"]
         })
 
     return result
