@@ -1,6 +1,6 @@
 import requests
 
-from vk_token_manager import (
+from tok_man import (
     get_access_token,
     clear_token_cache
 )
@@ -37,16 +37,16 @@ def _request_streams(token):
 
 
 def get_online_streams():
-    token = get_access_token()
+    nutoken = get_access_token()
 
-    response = _request_streams(token)
+    response = _request_streams(nutoken)
 
     if response.status_code == 401:
         clear_token_cache()
 
-        token = get_access_token()
+        nutoken = get_access_token()
 
-        response = _request_streams(token)
+        response = _request_streams(nutoken)
 
     response.raise_for_status()
 
