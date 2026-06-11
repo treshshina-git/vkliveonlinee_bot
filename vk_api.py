@@ -15,20 +15,17 @@ CHAT_RULETTE_CATEGORY_ID = (
 )
 
 
-def _request_streams(token):
+def _request_streams(access_token):
     return requests.get(
         API_URL,
         headers={
-            "Authorization":
-                f"Bearer {token}",
-            "Accept":
-                "application/json"
+            "Authorization": f"Bearer {access_token}",
+            "Accept": "application/json"
         },
         params={
             "limit": 200,
             "offset": 0,
-            "category_id":
-                CHAT_RULETTE_CATEGORY_ID,
+            "category_id": CHAT_RULETTE_CATEGORY_ID,
             "all_streams": True,
             "has_vk_video": True
         },
@@ -37,16 +34,16 @@ def _request_streams(token):
 
 
 def get_online_streams():
-    nutoken = get_access_token()
+    access_token = get_access_token()
 
-    response = _request_streams(nutoken)
+    response = _request_streams(access_token)
 
     if response.status_code == 401:
         clear_token_cache()
 
-        nutoken = get_access_token()
+        access_token = get_access_token()
 
-        response = _request_streams(nutoken)
+        response = _request_streams(access_token)
 
     response.raise_for_status()
 
