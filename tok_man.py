@@ -1,7 +1,11 @@
 import os
 import base64
 import requests
+import sys
 
+if os.getenv("RAILWAY_ENVIRONMENT"):
+    print("Running on Railway - single instance expected")
+    
 TOKEN_URL = (
     "https://api.live.vkvideo.ru/oauth/server/token"
 )
