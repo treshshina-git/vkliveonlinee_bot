@@ -6,40 +6,50 @@ from telegram.ext import (
 )
 
 from vk_api import get_online_streams
+import os
 
-TOKEN = "YOUR_TOKEN"
+BOT_TOKEN = os.getenv(
+    "TELEGRAM_BOT_TOKEN"
+)
 
 
 async def online(
     update: Update,
     context: ContextTypes.DEFAULT_TYPE
 ):
+
     streams = get_online_streams()
+
+    streams.sort(
+        key=lambda x: x["viewers"],
+        reverse=True
+    )
 
     if not streams:
         await update.message.reply_text(
-            "Онлайн стримов нет"
+            "Стримы не найдены."
         )
         return
 
-    lines = []
+    text = []
 
-    for s in streams[:20]:
-        lines.append(
-            f"🔴 {s['title']}\n"
-            f"👤 {s['author']}\n"
-            f"👁 {s['viewers']}\n"
-            f"{s['url']}"
+    for stream in streams[:20]:
+
+        text.append(
+            f"🔴 {stream['title']}\n"
+            f"👤 {stream['owner']}\n"
+            f"👁 {stream['viewers']}\n"
+            f"{stream['url']}"
         )
 
     await update.message.reply_text(
-        "\n\n".join(lines)
+        "\n\n".join(text)
     )
 
 
 app = (
     ApplicationBuilder()
-    .token(TOKEN)
+    .token(BOT_TOKEN)
     .build()
 )
 
