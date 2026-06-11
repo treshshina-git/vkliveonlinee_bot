@@ -1,6 +1,6 @@
 import requests
 
-from token_manager import (
+from vk_token_manager import (
     get_access_token,
     clear_token_cache
 )
