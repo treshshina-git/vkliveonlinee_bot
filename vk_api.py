@@ -41,7 +41,8 @@ def get_online_streams():
         access_token = get_access_token()
 
         response = _request_streams(access_token)
-
+    print(response.status_code)
+    print(response.text)
     response.raise_for_status()
 
     payload = response.json()
