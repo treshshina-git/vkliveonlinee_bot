@@ -7,7 +7,21 @@ TOKEN_URL = (
 )
 
 CLIENT_ID = os.getenv("VK_CLIENT_ID")
+VK_CLIENT_ID = os.getenv(
+    "VK_CLIENT_ID"
+)
+if not BOT_TOKEN:
+    raise RuntimeError(
+        "VK_CLIENT_ID not set"
+    )
 CLIENT_SECRET = os.getenv("VK_CLIENT_SECRET")
+VK_CLIENT_SECRET = os.getenv(
+    "VK_CLIENT_SECRET"
+)
+if not BOT_TOKEN:
+    raise RuntimeError(
+        "VK_CLIENT_SECRET not set"
+    )
 
 
 def get_access_token():
