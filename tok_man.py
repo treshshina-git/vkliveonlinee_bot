@@ -7,49 +7,48 @@ TOKEN_URL = (
 )
 
 CLIENT_ID = os.getenv("VK_CLIENT_ID")
-VK_CLIENT_ID = os.getenv(
-    "VK_CLIENT_ID"
-)
-if not BOT_TOKEN:
+CLIENT_SECRET = os.getenv("VK_CLIENT_SECRET")
+
+if not CLIENT_ID:
     raise RuntimeError(
         "VK_CLIENT_ID not set"
     )
-CLIENT_SECRET = os.getenv("VK_CLIENT_SECRET")
-VK_CLIENT_SECRET = os.getenv(
-    "VK_CLIENT_SECRET"
-)
-if not BOT_TOKEN:
+
+if not CLIENT_SECRET:
     raise RuntimeError(
         "VK_CLIENT_SECRET not set"
     )
 
 
 def get_access_token():
-
     credentials = (
         f"{CLIENT_ID}:{CLIENT_SECRET}"
     )
 
     encoded = base64.b64encode(
-        credentials.encode()
-    ).decode()
+        credentials.encode("utf-8")
+    ).decode("utf-8")
 
     response = requests.post(
         TOKEN_URL,
         headers={
             "Authorization": f"Basic {encoded}",
-            "Content-Type":
+            "Content-Type": (
                 "application/x-www-form-urlencoded"
+            )
         },
         data={
-            "grant_type":
-                "client_credentials"
+            "grant_type": "client_credentials"
         },
         timeout=30
     )
 
     response.raise_for_status()
 
-    data = response.json()
+    payload = response.json()
 
-    return data["access_token"]
+    return payload["access_token"]
+
+
+def clear_token_cache():
+    pass
