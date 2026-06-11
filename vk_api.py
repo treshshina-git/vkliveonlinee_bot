@@ -1,9 +1,6 @@
 import requests
 
-from tok_man import (
-    get_access_token,
-    clear_token_cache
-)
+from tok_man import get_access_token
 
 API_URL = (
     "https://apidev.live.vkvideo.ru"
