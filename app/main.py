@@ -12,7 +12,14 @@ from app.config import (
 app = FastAPI()
 
 tg_app = setup_app()
+@app.post("/webhook")
+async def webhook(request: Request):
 
+    data = await request.json()
+
+    print("INCOMING UPDATE:", data)
+
+    return {"ok": True}
 
 @app.on_event("startup")
 async def startup():
