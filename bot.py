@@ -11,6 +11,7 @@ import os
 BOT_TOKEN = os.getenv(
     "TELEGRAM_BOT_TOKEN"
 )
+print("BOT_TOKEN =", BOT_TOKEN)
 if not BOT_TOKEN:
     raise RuntimeError(
         "TELEGRAM_BOT_TOKEN not set"
