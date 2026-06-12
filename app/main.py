@@ -13,7 +13,6 @@ app = FastAPI()
 
 tg_app = setup_app()
 
-
 @app.on_event("startup")
 async def startup():
 
