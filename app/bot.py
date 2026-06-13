@@ -14,16 +14,6 @@ from telegram.ext import (
 from app.vk_api import get_online_streams
 from app.config import TELEGRAM_BOT_TOKEN
 
-
-def build_keyboard():
-    return InlineKeyboardMarkup([
-        [
-            InlineKeyboardButton("🔄 Обновить", callback_data="refresh"),
-            InlineKeyboardButton("🔝 ТОП-5", callback_data="top5"),
-        ]
-    ])
-
-
 def format_streams(streams):
     return "\n\n".join(
         f"🔴 {s['title']}\n"
@@ -38,9 +28,6 @@ async def send(update, context, mode="all"):
     streams = get_online_streams()
 
     streams.sort(key=lambda x: x["viewers"], reverse=True)
-
-    if mode == "top5":
-        streams = streams[:5]
 
     text = format_streams(streams)
 
