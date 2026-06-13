@@ -14,10 +14,19 @@ from telegram.ext import (
 from app.vk_api import get_online_streams
 from app.config import TELEGRAM_BOT_TOKEN
 
+
+def build_keyboard():
+    return InlineKeyboardMarkup([
+        [
+            InlineKeyboardButton("🔄 Обновить", callback_data="refresh"),
+        ]
+    ])
+
+
 def format_streams(streams):
     return "\n\n".join(
         f"🔴 {s['title']}\n"
-        f"👤 {s['owner']} - {s['url']}\n"
+        f"👤 {s['owner']}\n - {s['url']}"
         f"👁 {s['viewers']}\n"
         for s in streams
     )
@@ -56,9 +65,6 @@ async def buttons(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     if q.data == "refresh":
         await send(update, context)
-
-    elif q.data == "top5":
-        await send(update, context, mode="top5")
 
 
 def setup_app():
