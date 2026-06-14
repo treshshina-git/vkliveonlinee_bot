@@ -19,7 +19,6 @@ def build_keyboard():
     return InlineKeyboardMarkup([
         [
             InlineKeyboardButton("🔄 Обновить", callback_data="refresh"),
-            InlineKeyboardButton("🔝 ТОП-5", callback_data="top5"),
         ]
     ])
 
@@ -27,9 +26,8 @@ def build_keyboard():
 def format_streams(streams):
     return "\n\n".join(
         f"🔴 {s['title']}\n"
-        f"👤 {s['owner']}\n"
+        f"👤 {s['owner']} - {s['url']} \n"
         f"👁 {s['viewers']}\n"
-        f"{s['url']}"
         for s in streams
     )
 
@@ -39,9 +37,6 @@ async def send(update, context, mode="all"):
     streams = get_online_streams()
 
     streams.sort(key=lambda x: x["viewers"], reverse=True)
-
-    if mode == "top5":
-        streams = streams[:5]
 
     text = format_streams(streams)
 
@@ -71,8 +66,6 @@ async def buttons(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if q.data == "refresh":
         await send(update, context)
 
-    elif q.data == "top5":
-        await send(update, context, mode="top5")
 
 
 def setup_app():
