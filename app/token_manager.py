@@ -1,9 +1,7 @@
 import time
 import base64
 import requests
-from app.config import VK_CLIENT_ID, VK_CLIENT_SECRET
-
-TOKEN_URL = "https://api.live.vkvideo.ru/oauth/server/token"
+from app.config import VK_CLIENT_ID, VK_CLIENT_SECRET, TOKEN_VK_URL
 
 _cached_token = None
 _expire_at = 0
@@ -25,7 +23,7 @@ def get_access_token():
     ).decode()
 
     r = requests.post(
-        TOKEN_URL,
+        TOKEN_VK_URL,
         headers={
             "Authorization": f"Basic {encoded}",
             "Content-Type": "application/x-www-form-urlencoded"
