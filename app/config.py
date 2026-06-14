@@ -2,7 +2,6 @@
 import os
 
 TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
-
 VK_CLIENT_ID = os.getenv("VK_CLIENT_ID")
 VK_CLIENT_SECRET = os.getenv("VK_CLIENT_SECRET")
 
@@ -10,7 +9,8 @@ WEBHOOK_URL = os.getenv("WEBHOOK_URL")
 WEBHOOK_SECRET = os.getenv("WEBHOOK_SECRET", "vk_live_bot")
 
 DEFAULT_CATEGORY_ID = os.getenv("DEFAULT_CATEGORY_ID")
-
+API_URL = "https://apidev.live.vkvideo.ru/v1/catalog/online_channels"
+CATEGORY_API_URL = "https://apidev.live.vkvideo.ru/v1/category/search"
 
 def validate_config():
     missing = []
