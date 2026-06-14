@@ -7,6 +7,9 @@ WEBHOOK_URL = os.getenv("WEBHOOK_URL")
 WEBHOOK_SECRET = os.getenv("WEBHOOK_SECRET", "vk_live_bot")
 CHAT_RULETTE_CATEGORY_ID = os.getenv("DEFAULT_CATEGORY_ID")
 TOKEN_VK_URL = os.getenv("TOKEN_VK_URL")
+API_URL = os.getenv("API_URL")
+
+
 
 def validate_config():
     missing = []
