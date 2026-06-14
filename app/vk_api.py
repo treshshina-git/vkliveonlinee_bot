@@ -1,7 +1,7 @@
 
 import requests
 from app.token_manager import get_access_token
-
+from app.config import DEFAULT_CATEGORY_ID 
 API_URL = "https://apidev.live.vkvideo.ru/v1/catalog/online_channels"
 CATEGORY_API_URL = "https://apidev.live.vkvideo.ru/v1/category/search"
 
