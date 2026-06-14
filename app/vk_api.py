@@ -54,6 +54,7 @@ def get_online_streams(category_id=None):
     streams = []
 
     for item in data.get("data", {}).get("channels", []):
+        print(item.keys())
         stream = item.get("stream", {})
         owner = item.get("owner", {})
         channel = item.get("channel", {})
