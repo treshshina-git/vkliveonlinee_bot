@@ -31,7 +31,7 @@ def get_online_streams():
         owner = item.get("owner", {})
         channel = item.get("channel", {})
         uri = channel.get("url", "")
-        urik = "https://live.vkvideo.ru/{uri}"
+        urik = "https://live.vkvideo.ru/" + uri
         streams.append({
             "title": stream.get("title", "No title"),
             "viewers": stream.get("counters", {}).get("viewers", 0),
