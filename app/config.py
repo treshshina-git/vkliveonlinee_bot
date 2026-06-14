@@ -1,16 +1,15 @@
-
 import os
 
 TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
+
 VK_CLIENT_ID = os.getenv("VK_CLIENT_ID")
 VK_CLIENT_SECRET = os.getenv("VK_CLIENT_SECRET")
 
 WEBHOOK_URL = os.getenv("WEBHOOK_URL")
 WEBHOOK_SECRET = os.getenv("WEBHOOK_SECRET", "vk_live_bot")
 
-DEFAULT_CATEGORY_ID = os.getenv("DEFAULT_CATEGORY_ID")
-API_URL = "https://apidev.live.vkvideo.ru/v1/catalog/online_channels"
-CATEGORY_API_URL = "https://apidev.live.vkvideo.ru/v1/category/search"
+CHAT_RULETTE_CATEGORY_ID = "6abff723-68ea-4c47-8df1-55573d362749"
+
 
 def validate_config():
     missing = []
@@ -28,4 +27,6 @@ def validate_config():
         missing.append("WEBHOOK_URL")
 
     if missing:
-        raise RuntimeError(f"Missing env vars: {', '.join(missing)}")
+        raise RuntimeError(
+            f"Missing env vars: {', '.join(missing)}"
+        )

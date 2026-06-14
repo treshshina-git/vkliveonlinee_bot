@@ -31,7 +31,7 @@ async def startup():
 async def webhook(request: Request):
 
     data = await request.json()
-    print("INCOMING UPDATE:", data)
+
     update = Update.de_json(data, tg_app.bot)
 
     await tg_app.process_update(update)
