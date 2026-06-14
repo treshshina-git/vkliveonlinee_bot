@@ -1,39 +1,47 @@
 
 import requests
 from app.token_manager import get_access_token
-from app.config import DEFAULT_CATEGORY_ID
 
 API_URL = "https://apidev.live.vkvideo.ru/v1/catalog/online_channels"
-CATEGORIES_URL = "https://apidev.live.vkvideo.ru/v1/catalog/categories"
+CATEGORY_API_URL = "https://apidev.live.vkvideo.ru/v1/category/search"
 
 
 def get_categories():
+
     token = get_access_token()
+
     r = requests.get(
-        CATEGORIES_URL,
+        CATEGORY_API_URL,
         headers={"Authorization": f"Bearer {token}"},
+        params={
+            "query": "",
+            "type": "chat",
+            "limit": 100
+        },
         timeout=30
     )
+
     r.raise_for_status()
+
     data = r.json()
 
-    categories = []
-    for item in data.get("data", {}).get("categories", []):
-        categories.append({
-            "id": item.get("id"),
-            "title": item.get("title", "Без названия")
-        })
-    return categories
+    return [
+        {
+            "id": item["id"],
+            "title": item["title"]
+        }
+        for item in data.get("data", {}).get("categories", [])
+    ]
 
-
-def get_online_streams(category_id=None):
+def get_online_streams(category_id):
     token = get_access_token()
 
     category_id = category_id or DEFAULT_CATEGORY_ID
 
-    params = {
+    params={
         "limit": 200,
         "offset": 0,
+        "category_id": category_id,
         "all_streams": True,
         "has_vk_video": True
     }
