@@ -1,3 +1,4 @@
+
 import os
 
 TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
@@ -8,7 +9,7 @@ VK_CLIENT_SECRET = os.getenv("VK_CLIENT_SECRET")
 WEBHOOK_URL = os.getenv("WEBHOOK_URL")
 WEBHOOK_SECRET = os.getenv("WEBHOOK_SECRET", "vk_live_bot")
 
-CHAT_RULETTE_CATEGORY_ID = "6abff723-68ea-4c47-8df1-55573d362749"
+DEFAULT_CATEGORY_ID = os.getenv("DEFAULT_CATEGORY_ID")
 
 
 def validate_config():
@@ -27,6 +28,4 @@ def validate_config():
         missing.append("WEBHOOK_URL")
 
     if missing:
-        raise RuntimeError(
-            f"Missing env vars: {', '.join(missing)}"
-        )
+        raise RuntimeError(f"Missing env vars: {', '.join(missing)}")
