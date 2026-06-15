@@ -1,21 +1,20 @@
 import requests
 from app.token_manager import get_access_token
 from app.config import CHAT_RULETTE_CATEGORY_ID, API_URL
-
+API_URL1 = https://apidev.live.vkvideo.ru/v1/catalog/online_categories
 def get_online_streams():
     token = get_access_token()
     r = requests.get(
-        API_URL,
+        API_URL1,
         headers={"Authorization": f"Bearer {token}"},
         params={
             "limit": 200,
             "offset": 0,
-            "category_id": CHAT_RULETTE_CATEGORY_ID,
-            "all_streams": True,
-            "has_vk_video": True
+            "category_type": ""
         },
         timeout=30
     )
+    print(r.status_code, r.text)
     r.raise_for_status()
     data = r.json()
     streams = []
