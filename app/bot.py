@@ -19,7 +19,7 @@ def build_keyboard():
         ]
     ])
 def format_streams(streams):
-    return "ᚐ ᚑ ᚒ ᚓ ᚔ ᚕ ᚔ ᚓ ᚒ ᚑ ᚐ\n".join(
+    return "⚞ⓉⓇⒺⓈⒽⒾⓃⒶ⚟ ⛭ ▁▂▅▇ ⟸ ҬҎЕѰЍҢӐ ⟹\n".join(
         f"👤 {s['owner']} \n"
         f"🔴 {s['title']} \n"
         f"👁 {s['viewers']} - {s['url']} \n"
