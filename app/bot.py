@@ -1,3 +1,5 @@
+import os
+
 from telegram import (
     InlineKeyboardButton,
     InlineKeyboardMarkup,
@@ -19,10 +21,11 @@ def build_keyboard():
         ]
     ])
 def format_streams(streams):
+    lurl = os.link({s['url']}) 
     return "▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇\n".join(
         f"👤 {s['owner']} \n"
         f"🔴 {s['title']} \n"
-        f"👁 {s['viewers']} - {s['url']} \n"
+        f"👁 {s['viewers']} - " {s['lurl']} "\n"
         for s in streams
     )
 
