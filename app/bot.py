@@ -21,7 +21,7 @@ def build_keyboard():
         ]
     ])
 def format_streams(streams):
-    return "🕛▪🕐▪🕑▪🕒▪🕓▪🕔▪🕕▪🕖▪🕗▪🕘▪🕙▪🕚\n".join(
+    return "🌑🌑🌑🌑🌑🌑🌑🌑🌑🌑🌑🌑🌑\n".join(
         f"👤 {s['owner']} \n"
         f"🔴 {s['title']} \n"
         f"👁 {s['viewers']} - {s['url']} \n"
