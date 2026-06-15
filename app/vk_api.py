@@ -18,6 +18,7 @@ def get_online_streams():
     r.raise_for_status()
     data = r.json()
     dar = data.get("data", {}).get("categories", [])
+    print(dar)
     category_data = []
     for dars in dar:
         category_data.append({
