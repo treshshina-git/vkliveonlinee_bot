@@ -19,18 +19,18 @@ def get_online_streams():
     data = r.json()
     dar = data.get("data", {}).get("categories", [])
     dar1 = dar[0]
-        if dar {
-        "id": dar[0].get("id", 0),
-        "title": dar[0].get("title", "No category"),
-        "cover_url": dar[0].get("cover_url", ""),
-        "channels": dar[0].get("channels", [])
-        }
-        else {
-        "id": 0,
-        "title": "No category",
-        "cover_url": "",
-        "channels": []
-        }
+if dar {
+    "id": dar[0].get("id", 0),
+    "title": dar[0].get("title", "No category"),
+    "cover_url": dar[0].get("cover_url", ""),
+    "channels": dar[0].get("channels", [])
+    }
+else {
+    "id": 0,
+    "title": "No category",
+    "cover_url": "",
+    "channels": []
+}
     print(dar)
     print(dar1)
     streams = []
