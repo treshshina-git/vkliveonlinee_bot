@@ -1,7 +1,7 @@
 import requests
 from app.token_manager import get_access_token
 from app.config import CHAT_RULETTE_CATEGORY_ID, API_URL
-API_URL1 = https://apidev.live.vkvideo.ru/v1/catalog/online_categories
+API_URL1 = "https://apidev.live.vkvideo.ru/v1/catalog/online_categories"
 def get_online_streams():
     token = get_access_token()
     r = requests.get(
