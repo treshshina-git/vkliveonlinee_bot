@@ -19,6 +19,7 @@ def get_online_streams():
     )
     r.raise_for_status()
     data = r.json()
+    print("Data received from VK API - ", data)
     streams = []
     for item in data.get("data", {}).get("channels", []):
         stream = item.get("stream", {})
