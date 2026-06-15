@@ -18,7 +18,8 @@ def get_online_streams():
     r.raise_for_status()
     data = r.json()
     dar = data.get("data", {}).get("categories", [])
-    dar1 = dar[0] if dar {
+    dar1 = dar[0]
+    if dar {
         "id": dar[0].get("id", 0),
         "title": dar[0].get("title", "No category"),
         "cover_url": dar[0].get("cover_url", ""),
