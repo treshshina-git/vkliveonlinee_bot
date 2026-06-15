@@ -25,7 +25,7 @@ def format_streams(streams):
     return "▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇\n".join(
         f"👤 {s['owner']} \n"
         f"🔴 {s['title']} \n"
-        f"👁 {s['viewers']} - " {s['lurl']} "\n"
+        f"👁 {s['viewers']} - {s['lurl']} \n"
         for s in streams
     )
 
