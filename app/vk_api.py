@@ -1,10 +1,10 @@
 import requests
 from app.token_manager import get_access_token
-from app.config import CHAT_RULETTE_CATEGORY_ID, API_URL
+from app.config import CHAT_RULETTE_CATEGORY_ID, API_URL_STREAMS, API_URL_SECTIONS
 def get_online_streams():
     token = get_access_token()
     r = requests.get(
-        API_URL,
+        API_URL_STREAMS,
         headers={"Authorization": f"Bearer {token}"},
         params={
             "limit": 200,
@@ -32,3 +32,31 @@ def get_online_streams():
             "url": urik
         })
     return streams
+
+def get_online_sections():
+    token = get_access_token()
+    r = requests.get(
+        API_URL_SECTIONS,
+        headers={"Authorization": f"Bearer {token}"},
+        params={
+            "limit": 200,
+            "offset": 0,
+            "category_type": ""
+        },
+        timeout=30
+    )
+    r.raise_for_status()
+    data = r.json()
+    dar = data.get("data", {}).get("categories", [])
+    print("dar - ", dar)
+    category_data = []
+    for dars in dar:
+        category_data.append({
+            "id": dars[0].get("id", 0),
+            "title": dars[0].get("title", "No category"),
+            "cover_url": dars[0].get("cover_url", ""),
+            "channels": dars[0].get("channels", []),
+            "type": dars[0].get("type", ""),
+            "counters": dars[0].get("counters", {"viewers": 0})
+        })
+    print(category_data)
