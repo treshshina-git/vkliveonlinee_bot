@@ -9,11 +9,8 @@ CHAT_RULETTE_CATEGORY_ID = os.getenv("DEFAULT_CATEGORY_ID")
 TOKEN_VK_URL = os.getenv("TOKEN_VK_URL")
 API_URL = os.getenv("API_URL")
 
-
-
 def validate_config():
     missing = []
-
     if not TELEGRAM_BOT_TOKEN:
         missing.append("TELEGRAM_BOT_TOKEN")
 

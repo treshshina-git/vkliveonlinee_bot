@@ -3,9 +3,7 @@ from app.token_manager import get_access_token
 from app.config import CHAT_RULETTE_CATEGORY_ID, API_URL
 
 def get_online_streams():
-
     token = get_access_token()
-
     r = requests.get(
         API_URL,
         headers={"Authorization": f"Bearer {token}"},
@@ -18,15 +16,10 @@ def get_online_streams():
         },
         timeout=30
     )
-
     r.raise_for_status()
-
     data = r.json()
-
     streams = []
-
     for item in data.get("data", {}).get("channels", []):
-
         stream = item.get("stream", {})
         owner = item.get("owner", {})
         channel = item.get("channel", {})
@@ -38,5 +31,4 @@ def get_online_streams():
             "owner": owner.get("nick", "unknown"),
             "url": urik
         })
-
     return streams
