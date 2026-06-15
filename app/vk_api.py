@@ -33,14 +33,8 @@ def get_online_streams():
             "cover_url": "",
             "channels": []
         }
-else {
-    "id": 0,
-    "title": "No category",
-    "cover_url": "",
-    "channels": []
-}
+    print(category_data)
     print(dar)
-    print(dar1)
     streams = []
     for item in data.get("data", {}).get("channels", []):
         stream = item.get("stream", {})
