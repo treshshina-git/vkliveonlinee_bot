@@ -14,9 +14,11 @@ def get_online_streams():
         },
         timeout=30
     )
-    print(r.status_code, r.text)
+
     r.raise_for_status()
     data = r.json()
+    print(data.get("id"), data.get("cover_url") )
+    print(data)
     streams = []
     for item in data.get("data", {}).get("channels", []):
         stream = item.get("stream", {})
