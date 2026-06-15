@@ -23,13 +23,13 @@ def get_online_streams():
         "title": dar[0].get("title", "No category"),
         "cover_url": dar[0].get("cover_url", ""),
         "channels": dar[0].get("channels", [])
-    }
-    else {
+        }
+        else {
         "id": 0,
         "title": "No category",
         "cover_url": "",
         "channels": []
-    }
+        }
     print(dar)
     print(dar1)
     streams = []
