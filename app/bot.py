@@ -21,14 +21,10 @@ def build_keyboard():
         ]
     ])
 def format_streams(streams):
-    ur = ''
-    for ur in streams:
-        ur += f"<a href={['url']}>Microsoft</a>"
-    return ur
     return "▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇\n".join(
         f"👤 {s['owner']} \n"
         f"🔴 {s['title']} \n"
-        f"👁 {s['viewers']} - {s['ur']} \n"
+        f"👁 {s['viewers']} - {s['url']} \n"
         for s in streams
     )
 
