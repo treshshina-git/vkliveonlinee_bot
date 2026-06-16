@@ -1,6 +1,7 @@
 from multiprocessing import context
 import os
-from turtle import update
+
+
 
 from telegram import (
     InlineKeyboardButton,
@@ -75,7 +76,6 @@ async def send(update, context, mode="all"):
         )
 
 async def online(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    print("Sections for VK API - 0")
     await sendsec(update, context)
 
 async def buttons(update: Update, context: ContextTypes.DEFAULT_TYPE):
