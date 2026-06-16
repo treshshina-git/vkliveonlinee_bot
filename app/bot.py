@@ -19,7 +19,7 @@ from app.config import TELEGRAM_BOT_TOKEN
 def build_keyboard():
     return InlineKeyboardMarkup([
         [
-            InlineKeyboardButton("🔄 Обновить", callback_data="refresh"),
+        #    InlineKeyboardButton("🔄 Обновить", callback_data="refresh"),
         ]
     ])
 def format_sections(sections):
@@ -38,12 +38,10 @@ async def sendsec(update, context, mode="all"):
     sections = get_online_sections()
     print("Sections received from VK API - ", sections)
     sections.sort(key=lambda x: x["viewers"], reverse=True)
-    #text = format_sections(sections)
+    text = format_sections(sections)
     print(f"Text: {text}")
-    for sec in sections:
-        sec["name"] = sec["name"][:30]
     keyboard = [
-        [InlineKeyboardButton( sec["name"],
+        [InlineKeyboardButton( sec["name"][:30],
                               callback_data=f"section:{sec['id']}")]
         for sec in sections
     ]
