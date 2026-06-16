@@ -3,15 +3,15 @@ from app.token_manager import get_access_token
 from app.config import CHAT_RULETTE_CATEGORY_ID, API_URL_STREAMS, API_URL_SECTIONS
 def get_online_streams():
     token = get_access_token()
-    print(f"Section ID: {section_id}")
+    #print(f"{section_id}")
     if section_id is None:
         section_id = CHAT_RULETTE_CATEGORY_ID
-    print(f"Streams: {section_id}")
+    #print(f"Streams: {section_id}")
     r = requests.get(
         API_URL_STREAMS,
         headers={"Authorization": f"Bearer {token}"},
         params={
-            "limit": 50,
+            "limit": 30,
             "offset": 0,
             "category_id": section_id,
             "all_streams": True,
@@ -21,7 +21,7 @@ def get_online_streams():
     )
     r.raise_for_status()
     data = r.json()
-    #print("Data received from VK API - ", data)
+    print("Data received from VK API - ", data)
     streams = []
     for item in data.get("data", {}).get("channels", []):
         stream = item.get("stream", {})
@@ -43,7 +43,7 @@ def get_online_sections():
         API_URL_SECTIONS,
         headers={"Authorization": f"Bearer {token}"},
         params={
-            "limit": 30,
+            "limit": 20,
             "offset": 0,
             "category_type": ""
         },

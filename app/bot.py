@@ -42,7 +42,7 @@ async def sendsec(update, context, mode="all"):
     print(text)
     for sec in sections:
         sec["name"] = sec["name"][:30] + "..."
-    PAGE_SIZE = 20
+    PAGE_SIZE = 5
     page = int(context.user_data.get("page", 0))
     items = sections[page * PAGE_SIZE:(page + 1) * PAGE_SIZE]
     keyboard = [
@@ -61,7 +61,7 @@ async def sendsec(update, context, mode="all"):
 
 async def send(update, context, mode="all"):
     #section_id = context.user_data.get("section_id")
-    print(f"Section ID: {section_id}")
+    print(section_id)
     streams = get_online_streams()
     streams.sort(key=lambda x: x["viewers"], reverse=True)
     print(f"Text: {text}")
