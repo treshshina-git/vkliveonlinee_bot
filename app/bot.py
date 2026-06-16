@@ -23,9 +23,9 @@ def build_keyboard():
 def format_sections(sections):
     return "🌕🌕🌕🌕🌕🌕🌕🌕🌕🌕🌕🌕🌕🌕\n\n".join(
        # f"📺 <b>{s['owner']}</b> 📺 \n"
-        f"«<i>{s['title']}</i>»\n"
+        f"«<i>{se['title']}</i>»\n"
       #  f"🕶️ {s['viewers']}              🔗<a href='{s['url']}'>ссылка</a>🔗\n\n"
-        for s in sections
+        for se in sections
     )
 def format_streams(streams):
     return "🌕🌕🌕🌕🌕🌕🌕🌕🌕🌕🌕🌕🌕🌕\n\n".join(
