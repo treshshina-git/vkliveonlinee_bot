@@ -26,7 +26,7 @@ def get_online_streams(section_id=None):
     for item in data.get("data", {}).get("channels", []):
         stream = item.get("stream", {})
         #owner = item.get("owner", {})
-        owner = stream.get("channel", {}).get("nick", "Unknown") 
+        owner = item.get("nick", "Unknown")
         print(f"Processing stream: {stream.get('title', 'No title')} by {owner} with {stream.get('counters', {}).get('viewers', 0)} viewers")    
         channel = item.get("channel", {})
         uri = channel.get("url", "")
