@@ -101,7 +101,7 @@ async def buttons(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await send(update, context)
     return section_id
 
-async def setup_app():
+def setup_app():
     app = ApplicationBuilder().token(TELEGRAM_BOT_TOKEN).build()
     app.add_handler(CommandHandler("online", online))
     app.add_handler(CallbackQueryHandler(buttons))
