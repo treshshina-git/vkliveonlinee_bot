@@ -95,6 +95,15 @@ async def buttons(update: Update, context: ContextTypes.DEFAULT_TYPE):
         print(f"Selected section ID: {section_id}")
         #context.user_data["section_id"] = section_id
         await send(update, context)
+        return section_id
+    if q.data == "page_next":
+        page = int(context.user_data.get("page", 0)) + 1
+        context.user_data["page"] = page
+        await sendsec(update, context)
+    if q.data == "page_prev":
+        page = int(context.user_data.get("page", 0)) - 1
+        context.user_data["page"] = page
+        await sendsec(update, context)
 def setup_app():
     app = ApplicationBuilder().token(TELEGRAM_BOT_TOKEN).build()
     app.add_handler(CommandHandler("online", online))
