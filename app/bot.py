@@ -43,7 +43,7 @@ async def sendsec(update, context, mode="all"):
     text = format_sections(sections)
     #print(f"Text: {text}")
     keyboard = [
-        [InlineKeyboardButton( sec["name"][:30],
+        [InlineKeyboardButton( f"{sec['name'][:30]}",
                               callback_data=f"section:{sec['id']}")]
         for sec in sections
     ]
