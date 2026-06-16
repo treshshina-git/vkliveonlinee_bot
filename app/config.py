@@ -5,11 +5,13 @@ VK_CLIENT_ID = os.getenv("VK_CLIENT_ID")
 VK_CLIENT_SECRET = os.getenv("VK_CLIENT_SECRET")
 WEBHOOK_URL = os.getenv("WEBHOOK_URL")
 WEBHOOK_SECRET = os.getenv("WEBHOOK_SECRET", "vk_live_bot")
-CHAT_RULETTE_CATEGORY_ID = os.getenv("DEFAULT_CATEGORY_ID")
+API_default_ID = os.getenv("DEFAULT_CATEGORY_ID")
 TOKEN_VK_URL = os.getenv("TOKEN_VK_URL")
-API_URL_STREAMS = os.getenv("API_URL_STREAMS")
-API_URL_SECTIONS = os.getenv("API_URL_SECTIONS")
-API_URL_CATEGORY = os.getenv("API_URL_CATEGORY")
+API_active_channels = os.getenv("API_active_channels")
+API_online_categories = os.getenv("API_online_categories")
+API_category_search = os.getenv("API_category_search")
+API_online_channels = os.getenv("API_online_channels")
+
 
 
 def validate_config():

@@ -1,11 +1,13 @@
 import requests
 from app.token_manager import get_access_token
-from app.config import CHAT_RULETTE_CATEGORY_ID, API_URL_STREAMS, API_URL_SECTIONS, API_URL_CATEGORY
+from app.config import API_default_ID, TOKEN_VK_URL, API_active_channels, API_online_categories, API_category_search, API_online_channels
+from telegram import InlineKeyboardButton, InlineKeyboardMarkup
+
 def get_online_streams(section_id=None):
     token = get_access_token()
     #print(f"Fetching streams for section ID: {section_id}")
     r = requests.get(
-        API_URL_STREAMS,
+        API_active_channels,
         headers={"Authorization": f"Bearer {token}"},
         params={
             "limit": 50,
@@ -38,7 +40,7 @@ def get_online_streams(section_id=None):
 def get_online_sections():
     token = get_access_token()
     r = requests.get(
-        API_URL_SECTIONS,
+        API_online_categories,
         headers={"Authorization": f"Bearer {token}"},
         params={
             "limit": 30,
@@ -61,4 +63,5 @@ def get_online_sections():
             "viewers": item.get("counters", {}).get("viewers", 0)
         })
     #print("Parsed sections - ", sections)
+    if not sections: sections = [{"id": API_default_ID, "name": "Все категории", "viewers": 0}]
     return sections
