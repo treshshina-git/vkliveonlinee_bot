@@ -23,16 +23,17 @@ def build_keyboard():
         ]
     ])
 def format_sections(sections):
+    see_name = sections["name"][:30]
     return "🌕🌕🌕🌕🌕🌕🌕🌕🌕🌕🌕🌕🌕🌕\n\n".join(
        # f"📺 <b>{s['owner']}</b> 📺 \n"
-        f"«<i>{se['name']}</i>»\n"
+        f"«<i>{see_name}</i>»\n"
       #  f"🕶️ {s['viewers']}              🔗<a href='{s['url']}'>ссылка</a>🔗\n\n"
         for se in sections
     )
 def format_streams(streams):
     return "🌕🌕🌕🌕🌕🌕🌕🌕🌕🌕🌕🌕🌕🌕\n\n".join(
         f"📺 <b>{s['owner']}</b> 📺 \n"
-        f"«<i>{s['title'][:40]}</i>»\n"
+        f"{s['title'][:40]}\n"
         f"🕶️ {s['viewers']}              🔗<a href='{s['url']}'>ссылка</a>🔗\n\n"
         for s in streams
     )
@@ -42,9 +43,9 @@ async def sendsec(update, context, mode="all"):
     sections.sort(key=lambda x: x["viewers"], reverse=True)
     text = format_sections(sections)
     print(text)
-    see_name = sections["name"][:30]
+ 
     keyboard = [
-        [InlineKeyboardButton( see_name,
+        [InlineKeyboardButton( sec["name"],
                               callback_data=f"section:{sec['id']}")]
         for sec in sections
     ]
