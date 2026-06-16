@@ -39,7 +39,7 @@ def get_online_sections():
         API_URL_SECTIONS,
         headers={"Authorization": f"Bearer {token}"},
         params={
-            "limit": 200,
+            "limit": 50,
             "offset": 0,
             "category_type": ""
         },
