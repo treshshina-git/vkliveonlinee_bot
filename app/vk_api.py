@@ -3,7 +3,7 @@ from app.token_manager import get_access_token
 from app.config import CHAT_RULETTE_CATEGORY_ID, API_URL_STREAMS, API_URL_SECTIONS
 def get_online_streams():
     token = get_access_token()
-    section_id = data.get("section_id") if data else None
+    section_id = context.user_data.get("section_id")
     print(f"Section ID: {section_id}")
     if section_id is None:
         section_id = CHAT_RULETTE_CATEGORY_ID
@@ -12,7 +12,7 @@ def get_online_streams():
         API_URL_STREAMS,
         headers={"Authorization": f"Bearer {token}"},
         params={
-            "limit": 100,
+            "limit": 50,
             "offset": 0,
             "category_id": section_id,
             "all_streams": True,
@@ -44,7 +44,7 @@ def get_online_sections():
         API_URL_SECTIONS,
         headers={"Authorization": f"Bearer {token}"},
         params={
-            "limit": 50,
+            "limit": 30,
             "offset": 0,
             "category_type": ""
         },
