@@ -36,10 +36,10 @@ def format_streams(streams):
     )
 async def sendsec(update, context, mode="all"):
     sections = get_online_sections()
-    #print("Sections received from VK API - ", sections)
+    print("Sections received from VK API - ", sections)
     sections.sort(key=lambda x: x["viewers"], reverse=True)
     #text = format_sections(sections)
-    #print(f"Text: {text}")
+    print(f"Text: {text}")
     for sec in sections:
         sec["name"] = sec["name"][:30]
     PAGE_SIZE = 10
