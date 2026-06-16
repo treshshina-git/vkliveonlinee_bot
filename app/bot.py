@@ -40,12 +40,13 @@ def format_streams(streams):
     )
 async def sendsec(update, context, mode="all"):
     sections = get_online_sections()
-    #print("Sections received from VK API - ", sections)
+    print("Sections received from VK API - ", sections)
     sections.sort(key=lambda x: x["viewers"], reverse=True)
-    if len(sections["name"]) > 30:
-        sections["name"] = sections["name"][:30] + "..."
-    else:
-        sections["name"] = sections["name"]
+    for sec in sections:
+        if len(sec["name"]) > 30:
+            sec["name"] = sec["name"][:30] + "..."
+        else:
+            sec["name"] = sec["name"]
     text = format_sections(sections)
     print(text)
  
