@@ -40,14 +40,14 @@ def get_online_streams(section_id=None):
 def get_online_sections():
     token = get_access_token()
     r = requests.get(
-        API_online_categories,
+        API_category_search,
         headers={"Authorization": f"Bearer {token}"},
         params={
             "limit": 30,
-            #"query": "",
-            #"type": ""
-            "offset": 0,
-            "category_type": "irl"
+            "query": "",
+            "type": ""
+            #"offset": 0,
+            #"category_type": "irl"
         },
         timeout=30
     )
