@@ -42,7 +42,7 @@ async def sendsec(update, context, mode="all"):
     #print(f"Text: {text}")
     for sec in sections:
         sec["name"] = sec["name"][:30]
-    PAGE_SIZE = 5
+    PAGE_SIZE = 10
     page = int(context.user_data.get("page", 0))
     items = sections[page * PAGE_SIZE:(page + 1) * PAGE_SIZE]
     keyboard = [
@@ -93,7 +93,7 @@ async def buttons(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await sendsec(update, context)
     if q.data.startswith("section:"):
         section_id = q.data.split(":")[1]
-        #print(f"Selected section ID: {section_id}")
+        print(f"Selected section ID: {section_id}")
         context.user_data["section_id"] = section_id
         await send(update, context)
         return section_id

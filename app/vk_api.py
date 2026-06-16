@@ -1,6 +1,6 @@
 import requests
 from app.token_manager import get_access_token
-from app.config import CHAT_RULETTE_CATEGORY_ID, API_URL_STREAMS, API_URL_SECTIONS
+from app.config import CHAT_RULETTE_CATEGORY_ID, API_URL_STREAMS, API_URL_SECTIONS, API_URL_CATEGORY
 def get_online_streams(section_id=None):
     token = get_access_token()
     #print(f"Fetching streams for section ID: {section_id}")
@@ -8,7 +8,7 @@ def get_online_streams(section_id=None):
         API_URL_STREAMS,
         headers={"Authorization": f"Bearer {token}"},
         params={
-            "limit": 30,
+            "limit": 50,
             "offset": 0,
             "category_id": section_id,
             "all_streams": True,
@@ -37,10 +37,10 @@ def get_online_streams(section_id=None):
 def get_online_sections():
     token = get_access_token()
     r = requests.get(
-        API_URL_SECTIONS,
+        API_URL_CATEGORY,
         headers={"Authorization": f"Bearer {token}"},
         params={
-            "limit": 20,
+            "limit": 30,
             "offset": 0,
             "category_type": ""
         },
@@ -49,7 +49,7 @@ def get_online_sections():
     r.raise_for_status()
     data = r.json()
     dar = data.get("data", {}).get("categories", [])
-    #print("Sections from VK API - ", data)
+    print("Sections from VK API - ", data)
     sections = []
     for item in dar:
         sections.append({

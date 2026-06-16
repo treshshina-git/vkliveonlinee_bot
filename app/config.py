@@ -9,6 +9,8 @@ CHAT_RULETTE_CATEGORY_ID = os.getenv("DEFAULT_CATEGORY_ID")
 TOKEN_VK_URL = os.getenv("TOKEN_VK_URL")
 API_URL_STREAMS = os.getenv("API_URL_STREAMS")
 API_URL_SECTIONS = os.getenv("API_URL_SECTIONS")
+API_URL_CATEGORY = os.getenv("API_URL_CATEGORY")
+
 
 def validate_config():
     missing = []
