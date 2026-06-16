@@ -64,8 +64,8 @@ async def send(update, context, mode="all"):
     #print(context.user_data)
     streams = get_online_streams(section_id)
     streams.sort(key=lambda x: x["viewers"], reverse=True)
-    print(f"Text: {text}")
     text = format_streams(streams)
+    print(f"Text: {text}")
     if update.message:
         await update.message.reply_text(
             text,
