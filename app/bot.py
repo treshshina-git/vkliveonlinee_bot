@@ -57,7 +57,7 @@ async def send(update, context, mode="all"):
     streams = get_online_streams(section_id)
     streams.sort(key=lambda x: x["viewers"], reverse=True)
     text = format_streams(streams)
-    print(f"Text: {text}")
+    #print(f"Text: {text}")
     if update.message:
         await update.message.reply_text(
             text,
@@ -78,7 +78,7 @@ async def online(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 async def buttons(update: Update, context: ContextTypes.DEFAULT_TYPE):
     q = update.callback_query
-    print(f"Callback query data: {q.data}")
+    #print(f"Callback query data: {q.data}")
     await q.answer()
     if q.data == "refresh":
         await sendsec(update, context)

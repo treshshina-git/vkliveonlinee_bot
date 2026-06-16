@@ -5,7 +5,6 @@ from app.config import VK_CLIENT_ID, VK_CLIENT_SECRET, TOKEN_VK_URL
 
 _cached_token = None
 _expire_at = 0
-print(f"Sections from VK API - VK_CLIENT_ID: {VK_CLIENT_ID}, VK_CLIENT_SECRET: {VK_CLIENT_SECRET}, TOKEN_VK_URL: {TOKEN_VK_URL}")
 def get_access_token():
     global _cached_token, _expire_at
     now = int(time.time())
