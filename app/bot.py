@@ -61,7 +61,7 @@ async def sendsec(update, context, mode="all"):
 
 async def send(update, context, mode="all"):
     #section_id = context.user_data.get("section_id")
-    print(section_id)
+    print(context.user_data)
     streams = get_online_streams()
     streams.sort(key=lambda x: x["viewers"], reverse=True)
     print(f"Text: {text}")
