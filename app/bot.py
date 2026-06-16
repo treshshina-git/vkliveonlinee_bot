@@ -42,18 +42,11 @@ async def sendsec(update, context, mode="all"):
     print(f"Text: {text}")
     for sec in sections:
         sec["name"] = sec["name"][:30]
-    PAGE_SIZE = 10
-    page = int(context.user_data.get("page", 0))
-    items = sections[page * PAGE_SIZE:(page + 1) * PAGE_SIZE]
     keyboard = [
         [InlineKeyboardButton( sec["name"],
                               callback_data=f"section:{sec['id']}")]
         for sec in sections
     ]
-    keyboard.append([
-        InlineKeyboardButton("◀", callback_data="page_prev"),
-        InlineKeyboardButton("▶", callback_data="page_next"),
-    ])
     await update.message.reply_text(
         "Выберите раздел:",
         reply_markup=InlineKeyboardMarkup(keyboard)
@@ -97,14 +90,6 @@ async def buttons(update: Update, context: ContextTypes.DEFAULT_TYPE):
         context.user_data["section_id"] = section_id
         await send(update, context)
         return section_id
-    if q.data == "page_next":
-        page = int(context.user_data.get("page", 0)) + 1
-        context.user_data["page"] = page
-        await sendsec(update, context)
-    if q.data == "page_prev":
-        page = int(context.user_data.get("page", 0)) - 1
-        context.user_data["page"] = page
-        await sendsec(update, context)
 def setup_app():
     app = ApplicationBuilder().token(TELEGRAM_BOT_TOKEN).build()
     app.add_handler(CommandHandler("online", online))

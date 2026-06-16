@@ -63,5 +63,5 @@ def get_online_sections():
             "viewers": item.get("counters", {}).get("viewers", 0)
         })
     #print("Parsed sections - ", sections)
-    if not sections: sections = [{"id": API_default_ID, "name": "Все категории", "viewers": 0}]
+    if not sections: sections = [{"id": API_default_section_ID, "name": "Чат Рулетка", "viewers": 0}]
     return sections
