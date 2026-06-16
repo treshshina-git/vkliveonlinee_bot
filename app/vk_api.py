@@ -21,11 +21,11 @@ def get_online_streams(section_id=None):
     )
     r.raise_for_status()
     data = r.json()
+    print(f"Received data from VK API for section ID {section_id}: {data}")
     streams = []
     for item in data.get("data", {}).get("channels", []):
         stream = item.get("stream", {})
         #owner = item.get("owner", {})
-        owner = item.get("owner", {}).get("nick", "unknown")
         channel = item.get("channel", {})
         uri = channel.get("url", "")
         urik = "https://live.vkvideo.ru/" + uri
