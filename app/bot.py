@@ -41,7 +41,7 @@ async def sendsec(update, context, mode="all"):
     text = format_sections(sections)
     print(f"Text: {text}")
     for sec in sections:
-        sec["name"] = sec["name"][:30] + "..."
+        sec["name"] = sec["name"][:30]
     PAGE_SIZE = 5
     page = int(context.user_data.get("page", 0))
     items = sections[page * PAGE_SIZE:(page + 1) * PAGE_SIZE]

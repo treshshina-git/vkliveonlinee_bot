@@ -1,11 +1,10 @@
 import requests
 from app.token_manager import get_access_token
 from app.config import CHAT_RULETTE_CATEGORY_ID, API_URL_STREAMS, API_URL_SECTIONS
-def get_online_streams():
+def get_online_streams(section_id=None):
     token = get_access_token()
-    
-    #print(f"{section_id}")
-    if section_id is None:
+    if section_id is not None:
+        print(section_id)
         section_id = CHAT_RULETTE_CATEGORY_ID
     #print(f"Streams: {section_id}")
     r = requests.get(
