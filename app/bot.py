@@ -19,6 +19,7 @@ def build_keyboard():
     return InlineKeyboardMarkup([
         [
             InlineKeyboardButton("🔄 Обновить", callback_data="refresh"),
+            InlineKeyboardButton("◀️ Назад", callback_data="back"),
         ]
     ])
 def format_sections(sections):
@@ -82,6 +83,8 @@ async def buttons(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await q.answer()
     if q.data == "refresh":
         await send(update, context)
+    if q.data == "back":
+        await startup()
     if q.data.startswith("section:"):
         section_id = q.data.split(":")[1]
         #print(f"Selected section ID: {section_id}")
