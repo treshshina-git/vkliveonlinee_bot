@@ -30,9 +30,9 @@ def get_online_streams(section_id=None):
         uri = channel.get("url", "")
         urik = "https://live.vkvideo.ru/" + uri
         streams.append({
-            "title": stream.get("title", "No title"),
+            "title": stream.get("title", "No title")[:30],
             "viewers": stream.get("counters", {}).get("viewers", 0),
-            "owner": owner.get("nick", "unknown"),
+            "owner": owner.get("nick", "unknown")[:30],
             "url": urik
         })
     return streams
@@ -61,7 +61,7 @@ def get_online_sections():
     for item in dar:
         sections.append({
             "id": item.get("id"),
-            "name": item.get("title"),
+            "name": item.get("title")[:30],
             "viewers": item.get("counters", {}).get("viewers", 0)
         })
     print("Parsed sections - ", sections)
