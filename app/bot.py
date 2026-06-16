@@ -9,8 +9,7 @@ from app.config import (
     WEBHOOK_SECRET, 
     validate_config
 )
-from app.main import startup
-
+from app.main import starter
 
 from telegram import (
     InlineKeyboardButton,
@@ -95,7 +94,7 @@ async def buttons(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if q.data == "refresh":
         await send(update, context)
     if q.data == "back":
-        await startup()
+        await starter()
     if q.data.startswith("section:"):
         section_id = q.data.split(":")[1]
         #print(f"Selected section ID: {section_id}")

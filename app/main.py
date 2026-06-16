@@ -1,6 +1,6 @@
 from fastapi import FastAPI, Request
 from telegram import Update
-
+from app.bot import setup_app
 from app.config import (
     TELEGRAM_BOT_TOKEN,
     WEBHOOK_URL,
@@ -30,3 +30,11 @@ async def webhook(request: Request):
 @app.get("/health")
 def health():
     return {"status": "ok"}
+
+async def starter():
+    validate_config()
+    await tg_app.initialize()
+    await tg_app.bot.set_webhook(
+        url=WEBHOOK_URL,
+        secret_token=WEBHOOK_SECRET
+    )
