@@ -4,7 +4,7 @@ from app.config import API_default_section_ID, TOKEN_VK_URL, API_active_channels
 
 def get_online_streams(section_id=None):
     token = get_access_token()
-    print(f"Fetching streams for section ID: {section_id}")
+    #print(f"Fetching streams for section ID: {section_id}")
     r = requests.get(
         API_online_channels,
         headers={"Authorization": f"Bearer {token}"},
@@ -55,7 +55,7 @@ def get_online_sections():
     )
     r.raise_for_status()
     data = r.json()
-    print("Sections from VK API - ", data)
+    #print("Sections from VK API - ", data)
     dar = data.get("data", {}).get("categories", [])
     sections = []
     for item in dar:
@@ -64,6 +64,6 @@ def get_online_sections():
             "name": item.get("title")[:30],
             "viewers": item.get("counters", {}).get("viewers", 0)
         })
-    print("Parsed sections - ", sections)
+    #print("Parsed sections - ", sections)
     #if not sections: sections = [{"id": API_default_section_ID, "name": "Чат Рулетка", "viewers": 0}]
     return sections

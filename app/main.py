@@ -26,7 +26,7 @@ async def webhook(request: Request):
     update = Update.de_json(data, tg_app.bot)
     await tg_app.process_update(update)
     return {"ok": True}
-print("Sections4 main")
+#print("Sections4 main")
 @app.get("/health")
 def health():
     return {"status": "ok"}
