@@ -1,5 +1,16 @@
 from multiprocessing import context
 import os
+from fastapi import FastAPI, Request
+from telegram import Update
+from app.bot import setup_app
+from app.config import (
+    TELEGRAM_BOT_TOKEN,
+    WEBHOOK_URL,
+    WEBHOOK_SECRET, 
+    validate_config
+)
+from app.main import startup
+
 
 from telegram import (
     InlineKeyboardButton,
@@ -18,7 +29,7 @@ from app.config import TELEGRAM_BOT_TOKEN
 def build_keyboard():
     return InlineKeyboardMarkup([
         [
-            InlineKeyboardButton("🔄 Обновить", callback_data="refresh"),
+            InlineKeyboardButton("↪️ Обновить", callback_data="refresh"),
             InlineKeyboardButton("◀️ Назад", callback_data="back"),
         ]
     ])
