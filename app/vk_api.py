@@ -6,7 +6,7 @@ def get_online_streams(section_id=None):
     token = get_access_token()
     print(f"Fetching streams for section ID: {section_id}")
     r = requests.get(
-        API_catalog_online_channels,
+        API_online_channels,
         headers={"Authorization": f"Bearer {token}"},
         params={
             "limit": 50,
