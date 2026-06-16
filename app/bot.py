@@ -93,6 +93,7 @@ async def buttons(update: Update, context: ContextTypes.DEFAULT_TYPE):
     #print(f"Callback query data: {q.data}")
     await q.answer()
     if q.data == "refresh":
+        print(q.data)
         await send(update, context)
     if q.data == "back":
         await ApplicationBuilder().default().bot.send_message(chat_id=update.effective_chat.id, text="Выберите раздел:")
