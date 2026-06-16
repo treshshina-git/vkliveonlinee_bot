@@ -25,14 +25,14 @@ def build_keyboard():
 def format_sections(sections):
     return "🌕🌕🌕🌕🌕🌕🌕🌕🌕🌕🌕🌕🌕🌕\n\n".join(
        # f"📺 <b>{s['owner']}</b> 📺 \n"
-        f"«<i>{se['name']}</i>»\n"
+        f"«<i>{se['name'][:40]}</i>»\n"
       #  f"🕶️ {s['viewers']}              🔗<a href='{s['url']}'>ссылка</a>🔗\n\n"
         for se in sections
     )
 def format_streams(streams):
     return "🌕🌕🌕🌕🌕🌕🌕🌕🌕🌕🌕🌕🌕🌕\n\n".join(
         f"📺 <b>{s['owner']}</b> 📺 \n"
-        f"«<i>{s['title']}</i>»\n"
+        f"«<i>{s['title'][:40]}</i>»\n"
         f"🕶️ {s['viewers']}              🔗<a href='{s['url']}'>ссылка</a>🔗\n\n"
         for s in streams
     )
@@ -41,8 +41,9 @@ async def sendsec(update, context, mode="all"):
     #print("Sections received from VK API - ", sections)
     sections.sort(key=lambda x: x["viewers"], reverse=True)
     text = format_sections(sections)
+    
     keyboard = [
-        [InlineKeyboardButton(sec["name"],
+        [InlineKeyboardButton(sec["name"][:40],
                               callback_data=f"section:{sec['id']}")]
         for sec in sections
     ]
