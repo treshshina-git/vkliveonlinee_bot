@@ -20,14 +20,14 @@ def build_keyboard():
             InlineKeyboardButton("🔄 Обновить", callback_data="refresh"),
         ]
     ])
+
 def format_streams(streams):
-    return "🌑🌑🌑🌑🌑🌑🌑🌑🌑🌑🌑🌑🌑\n".join(
-        f"👤 {s['owner']} \n"
-        f"🔴 {s['title']} \n"
-        f"👁 {s['viewers']} - {s['url']} \n"
+    return "\n".join(
+        f"👤 *{s['owner']}*\n"
+        f"🔴 {s['title']}\n"
+        f"👁 {s['viewers']} - [Ссылка]({s['url']})\n"
         for s in streams
     )
-
 async def send(update, context, mode="all"):
     streams = get_online_streams()
     streams.sort(key=lambda x: x["viewers"], reverse=True)
