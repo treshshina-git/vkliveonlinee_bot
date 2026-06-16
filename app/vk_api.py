@@ -48,15 +48,11 @@ def get_online_sections():
     r.raise_for_status()
     data = r.json()
     dar = data.get("data", {}).get("categories", [])
-    #print("dar - ", dar)
-    category_data = []
-    for dars in dar:
-        category_data.append({
-            "id": dars[0].get("id", 0),
-            "title": dars[0].get("title", "No category"),
-            "cover_url": dars[0].get("cover_url", ""),
-            "channels": dars[0].get("channels", []),
-            "type": dars[0].get("type", ""),
-            "counters": dars[0].get("counters", {"viewers": 0})
+    print("Data received from VK API - ", data)
+    sections = []
+    for item in dar:
+        sections.append({
+            "id": item.get("id"),
+            "name": item.get("name")
         })
-    print(category_data)
+    return sections
