@@ -1,4 +1,6 @@
+from multiprocessing import context
 import os
+from turtle import update
 
 from telegram import (
     InlineKeyboardButton,
@@ -39,20 +41,16 @@ async def sendsec(update, context, mode="all"):
     #print("Sections received from VK API - ", sections)
     sections.sort(key=lambda x: x["viewers"], reverse=True)
     text = format_sections(sections)
-    if update.message:
-        await update.message.reply_text(
-            text,
-            reply_markup=build_keyboard(),
-            disable_web_page_preview=True,
-            parse_mode="HTML"
-        )
-    else:
-        await update.callback_query.edit_message_text(
-            text,
-            reply_markup=build_keyboard(),
-            disable_web_page_preview=True,
-            parse_mode="HTML"
-        )
+    keyboard = [
+        [InlineKeyboardButton(sec["name"],
+                              callback_data=f"section:{sec['id']}")]
+        for sec in sections
+    ]
+
+    await update.message.reply_text(
+        "Выберите раздел:",
+        reply_markup=InlineKeyboardMarkup(keyboard)
+    )
 
 async def send(update, context, mode="all"):
     streams = get_online_streams()
@@ -81,7 +79,10 @@ async def buttons(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await q.answer()
     if q.data == "refresh":
         await sendsec(update, context)
-
+    if q.data.startswith("section:"):
+        section_id = q.data.split(":")[1]
+        context.user_data["section_id"] = section_id
+        await send(update, context)
 def setup_app():
     app = ApplicationBuilder().token(TELEGRAM_BOT_TOKEN).build()
     app.add_handler(CommandHandler("online", online))
