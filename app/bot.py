@@ -95,7 +95,7 @@ async def buttons(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if q.data == "refresh":
         await send(update, context)
     if q.data == "back":
-        await ApplicationBuilder().shutdown()
+        await ApplicationBuilder().default().bot.send_message(chat_id=update.effective_chat.id, text="Выберите раздел:")
         await sendsec(update, context)
     if q.data.startswith("section:"):
         section_id = q.data.split(":")[1]
