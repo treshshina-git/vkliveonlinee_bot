@@ -26,9 +26,6 @@ def get_access_token():
     )
     r.raise_for_status()
     data = r.json()
-    print(
-        f"Received token from VK API: {data.get('access_token')}, expires in: {data.get('expire_time', 3600)} seconds"
-    )
     _cached_token = data["access_token"]
     _expire_at = now + int(data.get("expire_time", 3600))
     return _cached_token
