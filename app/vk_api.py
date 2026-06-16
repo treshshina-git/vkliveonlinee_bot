@@ -4,15 +4,15 @@ from app.config import API_default_section_ID, TOKEN_VK_URL, API_active_channels
 
 def get_online_streams(section_id=None):
     token = get_access_token()
-    #print(f"Fetching streams for section ID: {section_id}")
+    print(f"Fetching streams for section ID: {section_id}")
     r = requests.get(
-        API_active_channels,
+        API_catalog_online_channels,
         headers={"Authorization": f"Bearer {token}"},
         params={
             "limit": 50,
             "offset": 0,
-            #"category_id": section_id,
-            #"all_streams": True,
+            "category_id": section_id,
+            "all_streams": True,
             "has_vk_video": False,
             "category_type": "irl",
             "all_streams": True,
