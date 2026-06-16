@@ -12,7 +12,8 @@ def get_online_streams(section_id=None):
             "offset": 0,
             "category_id": section_id,
             "all_streams": True,
-            "has_vk_video": True
+            "has_vk_video": True,
+            "category_type": "irl"
         },
         timeout=30
     )
