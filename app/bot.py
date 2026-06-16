@@ -8,7 +8,6 @@ from app.config import (
     WEBHOOK_SECRET, 
     validate_config
 )
-from app.main import starter
 
 from telegram import (
     InlineKeyboardButton,
