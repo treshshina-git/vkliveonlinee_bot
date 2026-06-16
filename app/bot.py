@@ -23,9 +23,9 @@ def build_keyboard():
 
 def format_streams(streams):
     return "🎹🎹🎹🎹❄❄❄❄🌕🌕🌕🌕\n\n".join(
-        f"<a href='<b>{s['owner']}</b> 📢 «{s['title']}»\n"
+        f"<a href='<b>{s['owner']}</b> 📢 «{s['title']}»</a>\n"
         #f"◐ ◑\n"
-        f"👓 {s['viewers']}</a>\n\n"
+        f"👓 {s['viewers']}\n\n"
         for s in streams
     )
 async def send(update, context, mode="all"):
