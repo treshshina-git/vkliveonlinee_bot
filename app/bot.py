@@ -55,10 +55,6 @@ async def sendsec(update, context, mode="all"):
         )
 
 async def send(update, context, mode="all"):
-    sections = get_online_sections()
-    print("Sections received from VK API - ", sections)
-
-
     streams = get_online_streams()
     streams.sort(key=lambda x: x["viewers"], reverse=True)
     text = format_streams(streams)
