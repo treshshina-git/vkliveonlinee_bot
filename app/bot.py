@@ -25,7 +25,7 @@ def format_streams(streams):
     return "🌕🌕🌕🌕🌕🌕🌕🌕🌕🌕🌕🌕🌕🌕\n\n".join(
         f"{s['owner']} 📢 «{s['title']}»\n"
         #f"◐ ◑\n"
-        f"👓 {s['viewers']} ➡ ✅☑⚓ ﴾☛☞⍈➢🡆<a href='{s['url']}'>ссылка</a>\n\n"
+        f"👓 {s['viewers']} ⚡➥ ➽Ξ🎧<a href='{s['url']}'>ссылка</a>\n\n"
         for s in streams
     )
 async def send(update, context, mode="all"):
