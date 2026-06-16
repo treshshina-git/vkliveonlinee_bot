@@ -81,7 +81,7 @@ async def buttons(update: Update, context: ContextTypes.DEFAULT_TYPE):
     #print(f"Callback query data: {q.data}")
     await q.answer()
     if q.data == "refresh":
-        await sendsec(update, context)
+        await send(update, context)
     if q.data.startswith("section:"):
         section_id = q.data.split(":")[1]
         #print(f"Selected section ID: {section_id}")
