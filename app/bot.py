@@ -42,12 +42,18 @@ async def sendsec(update, context, mode="all"):
     print(text)
     for sec in sections:
         sec["name"] = sec["name"][:30] + "..."
+    PAGE_SIZE = 20
+    page = int(context.user_data.get("page", 0))
+    items = sections[page * PAGE_SIZE:(page + 1) * PAGE_SIZE]
     keyboard = [
         [InlineKeyboardButton( sec["name"],
                               callback_data=f"section:{sec['id']}")]
         for sec in sections
     ]
-
+    keyboard.append([
+        InlineKeyboardButton("◀", callback_data="page_prev"),
+        InlineKeyboardButton("▶", callback_data="page_next"),
+    ])
     await update.message.reply_text(
         "Выберите раздел:",
         reply_markup=InlineKeyboardMarkup(keyboard)

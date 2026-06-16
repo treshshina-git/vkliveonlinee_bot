@@ -7,7 +7,7 @@ def get_online_streams():
         API_URL_STREAMS,
         headers={"Authorization": f"Bearer {token}"},
         params={
-            "limit": 200,
+            "limit": 100,
             "offset": 0,
             "category_id": CHAT_RULETTE_CATEGORY_ID,
             "all_streams": True,
