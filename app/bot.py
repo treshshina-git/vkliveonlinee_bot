@@ -27,9 +27,9 @@ def format_sections(sections):
         for se in sections
     )
 def format_streams(streams):
-    return "\n\n".join(
-        f"📺 <b>{s['owner']}</b>        🕶️ {s['viewers']} \n"
-        f"{s['title']}\n"
+    return "\n".join(
+        f"<b>{s['owner']}</b>       🕶️ {s['viewers']}\n"
+        f"📺 {s['title']}\n"
         f"🔗<a href='{s['url']}'>ссылка</a>🔗\n\n"
         for s in streams
     )
