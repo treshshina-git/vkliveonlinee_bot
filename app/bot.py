@@ -36,13 +36,15 @@ async def send(update, context, mode="all"):
         await update.message.reply_text(
             text,
             reply_markup=build_keyboard(),
-            disable_web_page_preview=True
+            disable_web_page_preview=True,
+            parse_mode="HTML"
         )
     else:
         await update.callback_query.edit_message_text(
             text,
             reply_markup=build_keyboard(),
-            disable_web_page_preview=True
+            disable_web_page_preview=True,
+            parse_mode="HTML"
         )
 
 async def online(update: Update, context: ContextTypes.DEFAULT_TYPE):
