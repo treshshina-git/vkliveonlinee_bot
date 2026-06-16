@@ -27,7 +27,7 @@ def format_sections(sections):
     return "🌕🌕🌕🌕🌕🌕🌕🌕🌕🌕🌕🌕🌕🌕\n\n".join(
         
         #f"📺 <b>{s['owner']}</b> 📺 \n"
-        f"«<i>{se['name']}</i>»\n"
+        f"{se['name']}"
         #f"🕶️ {s['viewers']}              🔗<a href='{s['url']}'>ссылка</a>🔗\n\n"
         for se in sections
     )
