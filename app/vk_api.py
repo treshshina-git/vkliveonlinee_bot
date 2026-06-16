@@ -3,13 +3,17 @@ from app.token_manager import get_access_token
 from app.config import CHAT_RULETTE_CATEGORY_ID, API_URL_STREAMS, API_URL_SECTIONS
 def get_online_streams():
     token = get_access_token()
+    section_id = user.data.get("section_id")
+    if section_id 
+    else CHAT_RULETTE_CATEGORY_ID
+    print(f"Streams: {section_id}")
     r = requests.get(
         API_URL_STREAMS,
         headers={"Authorization": f"Bearer {token}"},
         params={
             "limit": 100,
             "offset": 0,
-            "category_id": CHAT_RULETTE_CATEGORY_ID,
+            "category_id": section_id,
             "all_streams": True,
             "has_vk_video": True
         },
