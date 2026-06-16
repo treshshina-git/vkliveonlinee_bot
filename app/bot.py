@@ -23,7 +23,7 @@ def build_keyboard():
 
 def format_streams(streams):
     return "\n".join(
-        f"👤 *{s['owner']}*\n"
+        f"👤 <b>{s['owner']}</b>\n"
         f"🔴 {s['title']}\n"
         f"👁 {s['viewers']} - [Ссылка]({s['url']})\n"
         for s in streams
