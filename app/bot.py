@@ -2,7 +2,6 @@ from multiprocessing import context
 import os
 from fastapi import FastAPI, Request
 from telegram import Update
-from app.bot import setup_app
 from app.config import (
     TELEGRAM_BOT_TOKEN,
     WEBHOOK_URL,
