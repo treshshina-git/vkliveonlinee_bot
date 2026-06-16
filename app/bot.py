@@ -37,19 +37,11 @@ def format_streams(streams):
 async def sendsec(update, context, mode="all"):
     sections = get_online_sections()
     #print("Sections received from VK API - ", sections)
-    for sec in sections:
-        if len(sec["name"]) > 30:
-            sec["name"] = sec["name"][:30] + "..."
-            sections[sections.index(sec)]["name"] = sec["name"]
-        else:
-            sec["name"] = sec["name"]
-            sections[sections.index(sec)]["name"] = sec["name"]
-    
     sections.sort(key=lambda x: x["viewers"], reverse=True)
-
     text = format_sections(sections)
     print(text)
- 
+    for sec in sections:
+        sec["name"] = sec["name"][:30] + "..."
     keyboard = [
         [InlineKeyboardButton( sec["name"],
                               callback_data=f"section:{sec['id']}")]
