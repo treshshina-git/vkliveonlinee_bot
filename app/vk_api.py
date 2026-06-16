@@ -40,7 +40,7 @@ def get_online_streams(section_id=None):
 def get_online_sections():
     token = get_access_token()
     r = requests.get(
-        API_catalog_online_categories,
+        API_online_categories,
         headers={"Authorization": f"Bearer {token}"},
         params={
             "limit": 30,
