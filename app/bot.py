@@ -35,6 +35,7 @@ def format_streams(streams):
         for s in streams
     )
 async def sendsec(update, context, mode="all"):
+    print("Sections for VK API - 1")    
     sections = get_online_sections()
     print("Sections received from VK API - ", sections)
     sections.sort(key=lambda x: x["viewers"], reverse=True)
@@ -74,6 +75,7 @@ async def send(update, context, mode="all"):
         )
 
 async def online(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    print("Sections for VK API - 0")
     await sendsec(update, context)
 
 async def buttons(update: Update, context: ContextTypes.DEFAULT_TYPE):
