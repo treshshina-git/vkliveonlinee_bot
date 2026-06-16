@@ -17,7 +17,7 @@ def get_online_streams():
     )
     r.raise_for_status()
     data = r.json()
-    print("Data received from VK API - ", data)
+    #print("Data received from VK API - ", data)
     streams = []
     for item in data.get("data", {}).get("channels", []):
         stream = item.get("stream", {})
@@ -48,7 +48,7 @@ def get_online_sections():
     r.raise_for_status()
     data = r.json()
     dar = data.get("data", {}).get("categories", [])
-    print("dar - ", dar)
+    #print("dar - ", dar)
     category_data = []
     for dars in dar:
         category_data.append({

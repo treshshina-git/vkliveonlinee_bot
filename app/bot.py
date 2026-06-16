@@ -11,7 +11,7 @@ from telegram.ext import (
     CallbackQueryHandler,
     ContextTypes
 )
-from app.vk_api import get_online_streams
+from app.vk_api import get_online_sections, get_online_streams
 from app.config import TELEGRAM_BOT_TOKEN
 
 def build_keyboard():
@@ -29,6 +29,8 @@ def format_streams(streams):
         for s in streams
     )
 async def send(update, context, mode="all"):
+    sections = get_online_sections()
+    print("Sections received from VK API - ", sections)
     streams = get_online_streams()
     streams.sort(key=lambda x: x["viewers"], reverse=True)
     text = format_streams(streams)
