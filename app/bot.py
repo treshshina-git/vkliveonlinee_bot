@@ -60,9 +60,9 @@ async def sendsec(update, context, mode="all"):
     )
 
 async def send(update, context, mode="all"):
+    print(f"context.user_data: {context.user_data}")
     section_id = context.user_data.get("section_id")
-    #print(context.user_data)
-    streams = get_online_streams(section_id)
+    streams = get_online_streams(context.user_data["section_id"])
     streams.sort(key=lambda x: x["viewers"], reverse=True)
     text = format_streams(streams)
     #print(f"Text: {text}")
@@ -93,7 +93,7 @@ async def buttons(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if q.data.startswith("section:"):
         section_id = q.data.split(":")[1]
         #print(f"Selected section ID: {section_id}")
-        #context.user_data["section_id"] = section_id
+        context.user_data["section_id"] = section_id
         await send(update, context)
         return section_id
     if q.data == "page_next":
