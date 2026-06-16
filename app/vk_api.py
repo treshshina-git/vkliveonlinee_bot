@@ -25,8 +25,7 @@ def get_online_streams(section_id=None):
     for item in data.get("data", {}).get("channels", []):
         stream = item.get("stream", {})
         #owner = item.get("owner", {})
-        owne = item.get("owner", {})
-        owner = owne.get("nick", "unknown")[:30]
+        owner = item.get("owner", {}).get("nick", "unknown")
         channel = item.get("channel", {})
         uri = channel.get("url", "")
         urik = "https://live.vkvideo.ru/" + uri
