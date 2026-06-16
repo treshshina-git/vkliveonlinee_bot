@@ -4,8 +4,8 @@ from app.config import CHAT_RULETTE_CATEGORY_ID, API_URL_STREAMS, API_URL_SECTIO
 def get_online_streams():
     token = get_access_token()
     section_id = user.data.get("section_id")
-    if section_id 
-    else CHAT_RULETTE_CATEGORY_ID
+    if section_id is None:
+        section_id = CHAT_RULETTE_CATEGORY_ID
     print(f"Streams: {section_id}")
     r = requests.get(
         API_URL_STREAMS,
