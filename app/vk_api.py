@@ -3,7 +3,6 @@ from app.token_manager import get_access_token
 from app.config import CHAT_RULETTE_CATEGORY_ID, API_URL_STREAMS, API_URL_SECTIONS
 def get_online_streams():
     token = get_access_token()
-    section_id = user_data.get("section_id")
     print(f"Section ID: {section_id}")
     if section_id is None:
         section_id = CHAT_RULETTE_CATEGORY_ID

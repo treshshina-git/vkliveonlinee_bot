@@ -91,7 +91,6 @@ async def buttons(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await sendsec(update, context)
     if q.data.startswith("section:"):
         section_id = q.data.split(":")[1]
-        context.user_data["section_id"] = section_id
         await send(update, context)
 def setup_app():
     app = ApplicationBuilder().token(TELEGRAM_BOT_TOKEN).build()
