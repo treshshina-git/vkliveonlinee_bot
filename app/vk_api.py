@@ -41,8 +41,10 @@ def get_online_sections():
         headers={"Authorization": f"Bearer {token}"},
         params={
             "limit": 30,
-            "offset": 0,
-            "category_type": ""
+            "query": "",
+            "type": ""
+            #"offset": 0,
+            #"category_type": ""
         },
         timeout=30
     )
