@@ -20,7 +20,7 @@ from app.config import TELEGRAM_BOT_TOKEN
 def build_keyboard():
     return InlineKeyboardMarkup([
         [
-        #    InlineKeyboardButton("🔄 Обновить", callback_data="refresh"),
+            InlineKeyboardButton("🔄 Обновить", callback_data="refresh"),
         ]
     ])
 def format_sections(sections):
