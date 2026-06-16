@@ -1,6 +1,6 @@
 import requests
 from app.token_manager import get_access_token
-from app.config import API_default_ID, TOKEN_VK_URL, API_active_channels, API_online_categories, API_category_search, API_online_channels
+from app.config import API_default_section_ID, TOKEN_VK_URL, API_active_channels, API_online_categories, API_category_search, API_online_channels
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup
 
 def get_online_streams(section_id=None):
