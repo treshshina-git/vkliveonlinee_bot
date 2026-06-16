@@ -94,7 +94,8 @@ async def buttons(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if q.data == "refresh":
         await send(update, context)
     if q.data == "back":
-        await starter()
+        await ApplicationBuilder().cleanup()
+        await sendsec(update, context)
     if q.data.startswith("section:"):
         section_id = q.data.split(":")[1]
         #print(f"Selected section ID: {section_id}")
@@ -102,7 +103,7 @@ async def buttons(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await send(update, context)
     return section_id
 
-def setup_app():
+async def setup_app():
     app = ApplicationBuilder().token(TELEGRAM_BOT_TOKEN).build()
     app.add_handler(CommandHandler("online", online))
     app.add_handler(CallbackQueryHandler(buttons))
