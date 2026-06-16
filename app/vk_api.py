@@ -3,9 +3,8 @@ from app.token_manager import get_access_token
 from app.config import CHAT_RULETTE_CATEGORY_ID, API_URL_STREAMS, API_URL_SECTIONS
 def get_online_streams(section_id=None):
     token = get_access_token()
-    if section_id is not None:
-        print(f"section_idGOS: {section_id}")
-    #print(f"Streams: {section_id}")
+    section_id = section_id or CHAT_RULETTE_CATEGORY_ID
+    print(f"Fetching streams for section ID: {section_id}")
     r = requests.get(
         API_URL_STREAMS,
         headers={"Authorization": f"Bearer {token}"},
@@ -20,7 +19,7 @@ def get_online_streams(section_id=None):
     )
     r.raise_for_status()
     data = r.json()
-    print("Elements from VK API - ", data)
+    #print("Elements from VK API - ", data)
     streams = []
     for item in data.get("data", {}).get("channels", []):
         stream = item.get("stream", {})
@@ -51,7 +50,7 @@ def get_online_sections():
     r.raise_for_status()
     data = r.json()
     dar = data.get("data", {}).get("categories", [])
-    print("Sections from VK API - ", data)
+    #print("Sections from VK API - ", data)
     sections = []
     for item in dar:
         sections.append({
@@ -59,5 +58,5 @@ def get_online_sections():
             "name": item.get("title"),
             "viewers": item.get("counters", {}).get("viewers", 0)
         })
-    print("Parsed sections - ", sections)
+    #print("Parsed sections - ", sections)
     return sections

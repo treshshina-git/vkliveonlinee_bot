@@ -38,8 +38,8 @@ async def sendsec(update, context, mode="all"):
     sections = get_online_sections()
     #print("Sections received from VK API - ", sections)
     sections.sort(key=lambda x: x["viewers"], reverse=True)
-    text = format_sections(sections)
-    print(f"Text: {text}")
+    #text = format_sections(sections)
+    #print(f"Text: {text}")
     for sec in sections:
         sec["name"] = sec["name"][:30]
     PAGE_SIZE = 5
@@ -65,7 +65,7 @@ async def send(update, context, mode="all"):
     streams = get_online_streams(section_id)
     streams.sort(key=lambda x: x["viewers"], reverse=True)
     text = format_streams(streams)
-    print(f"Text: {text}")
+    #print(f"Text: {text}")
     if update.message:
         await update.message.reply_text(
             text,
@@ -86,13 +86,13 @@ async def online(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 async def buttons(update: Update, context: ContextTypes.DEFAULT_TYPE):
     q = update.callback_query
-    print(f"Callback query data: {q.data}")
+    #print(f"Callback query data: {q.data}")
     await q.answer()
     if q.data == "refresh":
         await sendsec(update, context)
     if q.data.startswith("section:"):
         section_id = q.data.split(":")[1]
-        print(f"Selected section ID: {section_id}")
+        #print(f"Selected section ID: {section_id}")
         #context.user_data["section_id"] = section_id
         await send(update, context)
         return section_id
