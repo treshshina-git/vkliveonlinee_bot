@@ -96,7 +96,7 @@ async def buttons(update: Update, context: ContextTypes.DEFAULT_TYPE):
         print(q.data)
         await send(update, context)
     if q.data == "back":
-        await ApplicationBuilder().default().bot.send_message(chat_id=update.effective_chat.id, text="Выберите раздел:")
+        await ApplicationBuilder().token(TELEGRAM_BOT_TOKEN).build().process_update(update)
         await sendsec(update, context)
     if q.data.startswith("section:"):
         section_id = q.data.split(":")[1]
