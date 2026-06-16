@@ -90,7 +90,7 @@ async def online(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 async def buttons(update: Update, context: ContextTypes.DEFAULT_TYPE):
     q = update.callback_query
-    #print(f"Callback query data: {q.data}")
+    print(f"Callback query data: {q.data}")
     await q.answer()
     if q.data == "refresh":
         print(q.data)
