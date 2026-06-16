@@ -39,7 +39,7 @@ async def sendsec(update, context, mode="all"):
     #print("Sections received from VK API - ", sections)
     sections.sort(key=lambda x: x["viewers"], reverse=True)
     text = format_sections(sections)
-    print(text)
+    print(f"Text: {text}")
     for sec in sections:
         sec["name"] = sec["name"][:30] + "..."
     PAGE_SIZE = 5
@@ -61,7 +61,7 @@ async def sendsec(update, context, mode="all"):
 
 async def send(update, context, mode="all"):
     #section_id = context.user_data.get("section_id")
-    print(context.user_data)
+    #print(context.user_data)
     streams = get_online_streams()
     streams.sort(key=lambda x: x["viewers"], reverse=True)
     print(f"Text: {text}")
