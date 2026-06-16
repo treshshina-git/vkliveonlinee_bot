@@ -95,7 +95,7 @@ async def buttons(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if q.data == "refresh":
         await send(update, context)
     if q.data == "back":
-        await ApplicationBuilder().cleanup()
+        await ApplicationBuilder().reset()
         await sendsec(update, context)
     if q.data.startswith("section:"):
         section_id = q.data.split(":")[1]
