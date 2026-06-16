@@ -1,7 +1,10 @@
 from multiprocessing import context
 import os
+from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update
+from telegram.ext import ApplicationBuilder, CommandHandler, CallbackQueryHandler, ContextTypes
+from app.vk_api import get_online_sections, get_online_streams
+from app.config import TELEGRAM_BOT_TOKEN
 from fastapi import FastAPI, Request
-from telegram import Update
 from app.config import (
     TELEGRAM_BOT_TOKEN,
     WEBHOOK_URL,
