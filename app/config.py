@@ -11,8 +11,6 @@ API_online_categories = os.getenv("API_online_categories")
 API_category_search = os.getenv("API_category_search")
 API_online_channels = os.getenv("API_online_channels")
 
-
-
 def validate_config():
     missing = []
     if not TELEGRAM_BOT_TOKEN:

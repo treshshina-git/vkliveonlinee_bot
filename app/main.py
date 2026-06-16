@@ -19,14 +19,14 @@ async def startup():
         url=WEBHOOK_URL,
         secret_token=WEBHOOK_SECRET
     )
-
+print("Sections3 main")
 @app.post("/webhook")
 async def webhook(request: Request):
     data = await request.json()
     update = Update.de_json(data, tg_app.bot)
     await tg_app.process_update(update)
     return {"ok": True}
-
+print("Sections4 main")
 @app.get("/health")
 def health():
     return {"status": "ok"}

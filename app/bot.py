@@ -89,7 +89,8 @@ async def buttons(update: Update, context: ContextTypes.DEFAULT_TYPE):
         print(f"Selected section ID: {section_id}")
         context.user_data["section_id"] = section_id
         await send(update, context)
-        return section_id
+    return section_id
+
 def setup_app():
     app = ApplicationBuilder().token(TELEGRAM_BOT_TOKEN).build()
     app.add_handler(CommandHandler("online", online))
