@@ -33,7 +33,7 @@ def get_online_streams(section_id=None):
         streams.append({
             "title": stream.get("title", "No title")[:30],
             "viewers": stream.get("counters", {}).get("viewers", 0),
-            "owner": stream.get("nick", "Unknown"),
+            "owner": stream.get("channel", {}).get("nick", "Unknown"),
             "url": urik
         })
     return streams
