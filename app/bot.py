@@ -36,7 +36,7 @@ def format_streams(streams):
         for s in streams
     )
 async def sendsec(update, context, mode="all"):
-    print("Sections for VK API - 1")    
+    #print("Sections for VK API - 1")    
     sections = get_online_sections()
     #print("Sections received from VK API - ", sections)
     sections.sort(key=lambda x: x["viewers"], reverse=True)

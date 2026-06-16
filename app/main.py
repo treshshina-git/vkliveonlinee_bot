@@ -7,10 +7,10 @@ from app.config import (
     WEBHOOK_SECRET,
     validate_config
 )
-print("Sections for VK API")
+print("Sections1 main")
 app = FastAPI()
 tg_app = setup_app()
-
+print("Sections2 main")
 @app.on_event("startup")
 async def startup():
     validate_config()
