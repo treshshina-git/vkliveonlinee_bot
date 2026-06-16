@@ -21,7 +21,6 @@ def get_online_streams(section_id=None):
     )
     r.raise_for_status()
     data = r.json()
-    #print("Elements from VK API - ", data)
     streams = []
     for item in data.get("data", {}).get("channels", []):
         stream = item.get("stream", {})
