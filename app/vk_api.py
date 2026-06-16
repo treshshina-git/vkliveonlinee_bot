@@ -13,8 +13,9 @@ def get_online_streams(section_id=None):
             "offset": 0,
             #"category_id": section_id,
             #"all_streams": True,
-            "has_vk_video": True,
-            "category_type": "irl"
+            "has_vk_video": False,
+            "category_type": "irl",
+            "all_streams": True,
         },
         timeout=30
     )
@@ -61,6 +62,6 @@ def get_online_sections():
             "name": item.get("title"),
             "viewers": item.get("counters", {}).get("viewers", 0)
         })
-    #print("Parsed sections - ", sections)
+    print("Parsed sections - ", sections)
     if not sections: sections = [{"id": API_default_section_ID, "name": "Чат Рулетка", "viewers": 0}]
     return sections
