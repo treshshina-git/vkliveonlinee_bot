@@ -7,7 +7,7 @@ from app.config import (
     WEBHOOK_SECRET,
     validate_config
 )
-
+print("Sections for VK API")
 app = FastAPI()
 tg_app = setup_app()
 

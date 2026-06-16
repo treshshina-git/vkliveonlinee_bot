@@ -37,10 +37,10 @@ def format_streams(streams):
 async def sendsec(update, context, mode="all"):
     print("Sections for VK API - 1")    
     sections = get_online_sections()
-    print("Sections received from VK API - ", sections)
+    #print("Sections received from VK API - ", sections)
     sections.sort(key=lambda x: x["viewers"], reverse=True)
     text = format_sections(sections)
-    print(f"Text: {text}")
+    #print(f"Text: {text}")
     keyboard = [
         [InlineKeyboardButton( sec["name"][:30],
                               callback_data=f"section:{sec['id']}")]
@@ -80,7 +80,7 @@ async def online(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 async def buttons(update: Update, context: ContextTypes.DEFAULT_TYPE):
     q = update.callback_query
-    print(f"Callback query data: {q.data}")
+    #print(f"Callback query data: {q.data}")
     await q.answer()
     if q.data == "refresh":
         await sendsec(update, context)
