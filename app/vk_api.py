@@ -3,7 +3,7 @@ from app.token_manager import get_access_token
 from app.config import CHAT_RULETTE_CATEGORY_ID, API_URL_STREAMS, API_URL_SECTIONS
 def get_online_streams(section_id=None):
     token = get_access_token()
-    print(f"Fetching streams for section ID: {section_id}")
+    #print(f"Fetching streams for section ID: {section_id}")
     r = requests.get(
         API_URL_STREAMS,
         headers={"Authorization": f"Bearer {token}"},
