@@ -53,6 +53,7 @@ def get_online_sections():
     for item in dar:
         sections.append({
             "id": item.get("id"),
-            "name": item.get("title")
+            "name": item.get("title"),
+            "viewers": item.get("counters", {}).get("viewers", 0)
         })
     return sections

@@ -20,17 +20,45 @@ def build_keyboard():
             InlineKeyboardButton("🔄 Обновить", callback_data="refresh"),
         ]
     ])
-
+def format_sections(sections):
+    return "🌕🌕🌕🌕🌕🌕🌕🌕🌕🌕🌕🌕🌕🌕\n\n".join(
+       # f"📺 <b>{s['owner']}</b> 📺 \n"
+        f"«<i>{s['title']}</i>»\n"
+      #  f"🕶️ {s['viewers']}              🔗<a href='{s['url']}'>ссылка</a>🔗\n\n"
+        for s in sections
+    )
 def format_streams(streams):
     return "🌕🌕🌕🌕🌕🌕🌕🌕🌕🌕🌕🌕🌕🌕\n\n".join(
-        f"📺 <b>{s['owner']}</b> 📺 «<i>{s['title']}</i>»\n"
-        #f"◐ ◑\n"
+        f"📺 <b>{s['owner']}</b> 📺 \n"
+        f"«<i>{s['title']}</i>»\n"
         f"🕶️ {s['viewers']}              🔗<a href='{s['url']}'>ссылка</a>🔗\n\n"
         for s in streams
     )
+async def sendsec(update, context, mode="all"):
+    sections = get_online_sections()
+    #print("Sections received from VK API - ", sections)
+    sections.sort(key=lambda x: x["viewers"], reverse=True)
+    text = format_sections(sections)
+    if update.message:
+        await update.message.reply_text(
+            text,
+            reply_markup=build_keyboard(),
+            disable_web_page_preview=True,
+            parse_mode="HTML"
+        )
+    else:
+        await update.callback_query.edit_message_text(
+            text,
+            reply_markup=build_keyboard(),
+            disable_web_page_preview=True,
+            parse_mode="HTML"
+        )
+
 async def send(update, context, mode="all"):
     sections = get_online_sections()
     print("Sections received from VK API - ", sections)
+
+
     streams = get_online_streams()
     streams.sort(key=lambda x: x["viewers"], reverse=True)
     text = format_streams(streams)
@@ -50,13 +78,13 @@ async def send(update, context, mode="all"):
         )
 
 async def online(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await send(update, context)
+    await sendsec(update, context)
 
 async def buttons(update: Update, context: ContextTypes.DEFAULT_TYPE):
     q = update.callback_query
     await q.answer()
     if q.data == "refresh":
-        await send(update, context)
+        await sendsec(update, context)
 
 def setup_app():
     app = ApplicationBuilder().token(TELEGRAM_BOT_TOKEN).build()
