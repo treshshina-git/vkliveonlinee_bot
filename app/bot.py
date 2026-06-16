@@ -80,13 +80,13 @@ async def online(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 async def buttons(update: Update, context: ContextTypes.DEFAULT_TYPE):
     q = update.callback_query
-    #print(f"Callback query data: {q.data}")
+    print(f"Callback query data: {q.data}")
     await q.answer()
     if q.data == "refresh":
         await sendsec(update, context)
     if q.data.startswith("section:"):
         section_id = q.data.split(":")[1]
-        print(f"Selected section ID: {section_id}")
+        #print(f"Selected section ID: {section_id}")
         context.user_data["section_id"] = section_id
         await send(update, context)
     return section_id

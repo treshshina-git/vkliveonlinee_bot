@@ -7,10 +7,10 @@ from app.config import (
     WEBHOOK_SECRET,
     validate_config
 )
-print("Sections1 main")
+#print("Sections1 main")
 app = FastAPI()
 tg_app = setup_app()
-print("Sections2 main")
+#print("Sections2 main")
 @app.on_event("startup")
 async def startup():
     validate_config()
@@ -19,7 +19,7 @@ async def startup():
         url=WEBHOOK_URL,
         secret_token=WEBHOOK_SECRET
     )
-print("Sections3 main")
+#print("Sections3 main")
 @app.post("/webhook")
 async def webhook(request: Request):
     data = await request.json()
