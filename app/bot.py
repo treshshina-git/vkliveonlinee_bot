@@ -96,7 +96,7 @@ async def buttons(update: Update, context: ContextTypes.DEFAULT_TYPE):
         print(q.data)
         await send(update, context)
     if q.data == "back":
-        await sendsec(update, context)
+        await get_online_sections(update, context)
     if q.data.startswith("section:"):
         section_id = q.data.split(":")[1]
         #print(f"Selected section ID: {section_id}")
