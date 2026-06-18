@@ -372,7 +372,16 @@ async def openn(update: object, context: ContextTypes.DEFAULT_TYPE) -> None:
             data={"chat_id": chat_id},
          files={"document": f}
         ).json()
+    print(resp)
+    result = resp.get("result", {})
 
+    if "document" in result:
+        file_id = result["document"]["file_id"]
+    elif "audio" in result:
+        file_id = result["audio"]["file_id"]
+    else:
+        print(resp)
+        raise Exception("Не удалось найти file_id")
     file_id = resp["result"]["document"]["file_id"]
 
     #3. Получаем информацию о файле через getFile
