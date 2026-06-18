@@ -352,7 +352,7 @@ async def show_channels_for_category(query, context: ContextTypes.DEFAULT_TYPE, 
 
 async def openn(update: object, context: ContextTypes.DEFAULT_TYPE) -> None:
  
-
+    print(context)
     url = f"https://api.telegram.org/bot{BOT_TOKEN}/getFile"
 
     payload = { "file_id": "Required" }
