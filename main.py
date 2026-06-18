@@ -352,80 +352,15 @@ async def show_channels_for_category(query, context: ContextTypes.DEFAULT_TYPE, 
 
 async def openn(update, context):
 
+    keyboard = InlineKeyboardMarkup(
+        [
+            [
+                InlineKeyboardButton(text="Назад", callback_data="back_to_categories"),
 
+            ]
+        ]
+    )
 
-    url = "https://my.mail.ru/music/artists/Miyagi"  
-    response = requests.get(url)
-    html_content = response.text
-
-
-    soup = BeautifulSoup(html_content, "html.parser")
-
-
-    scripts = soup.find_all("script")
-
-
-    variable_name = "data-song"
-
-
-    pattern = rf'\b{variable_name}\s*=\s*([^;]+);'
-
-    found_values = []
-
-
-    for script in scripts:
-        if script.string:  
-
-            match = re.search(pattern, script.string)
-            if match:
-
-                value = match.group(1).strip()
-                found_values.append(value)
-
-    if found_values:
-        print(f"Найденные значения для {variable_name}: {found_values}")
-    else:
-        print(f"Переменная '{variable_name}' не найдена.")
-
-    URL = "https://moosic.my.mail.ru/file/4052659a672ff9d83517d4c69660790d.mp3"
-    #chat_id = 3543411787
-    chat_id = update.message.chat.id
-    r = requests.get(URL)
-
-    with open("song.mp3", "wb") as f:
-        f.write(r.content)
-
-    with open("song.mp3", "rb") as f:
-        msg = await context.bot.send_document(
-            chat_id=chat_id,
-            document=f
-        )
-
-        print(msg.to_dict())
-
-        if msg.document:
-            file_id = msg.document.file_id
-        elif msg.audio:
-            file_id = msg.audio.file_id
-        else:
-            raise Exception("Сообщение не содержит document или audio")
-        print(msg)
-        print(msg.to_dict())
-        print(msg.document)
-        print(msg.audio)
-    file_id = msg.audio.file_id
-    print("file_id =", file_id)
-
-    file = await context.bot.get_file(file_id)
-
-    print("file_path =", file.file_path)
-
-    await file.download_to_drive("saved_from_telegram.mp3")
-
-    print("Файл сохранён")
-
-    print(type(update))
-    print(update)
 
 async def error_handler(update: object, context: ContextTypes.DEFAULT_TYPE) -> None:
     logger.exception("Unhandled error", exc_info=context.error)
