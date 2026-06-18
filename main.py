@@ -351,19 +351,47 @@ async def show_channels_for_category(query, context: ContextTypes.DEFAULT_TYPE, 
 
 
 async def openn(update: object, context: ContextTypes.DEFAULT_TYPE) -> None:
- 
-    print(context)
-    url = f"https://api.telegram.org/bot{BOT_TOKEN}/getFile"
+    
 
-    payload = { "file_id": "Required" }
-    headers = {
-        "accept": "application/json",
-        "User-Agent": "Telegram Bot SDK - (https://github.com/irazasyed/telegram-bot-sdk)",
-        "content-type": "application/json"
-    }
 
-    response = requests.post(url, json=payload, headers=headers)
+    TOKEN = BOT_TOKEN
+    URL = "https://moosic.my.mail.ru/file/4052659a672ff9d83517d4c69660790d.mp3"
 
+    # 1. Скачиваем mp3
+    r = requests.get(URL, stream=True)
+    with open("song.mp3", "wb") as f:
+        for chunk in r.iter_content(8192):
+            f.write(chunk)
+
+    # 2. Отправляем боту (например, самому себе)
+    chat_id = 3543411787
+
+    with open("song.mp3", "rb") as f:
+        resp = requests.post(
+            f"https://api.telegram.org/bot{TOKEN}/sendDocument",
+            data={"chat_id": chat_id},
+         files={"document": f}
+        ).json()
+
+    file_id = resp["result"]["document"]["file_id"]
+
+    #3. Получаем информацию о файле через getFile
+    resp = requests.get(
+        f"https://api.telegram.org/bot{TOKEN}/getFile",
+        params={"file_id": file_id}
+    ).json()
+
+    file_path = resp["result"]["file_path"]
+
+    # 4. Скачиваем файл обратно с серверов Telegram
+    tg_url = f"https://api.telegram.org/file/bot{TOKEN}/{file_path}"
+
+    r = requests.get(tg_url)
+    with open("saved_from_telegram.mp3", "wb") as f:
+        f.write(r.content)
+
+    print("Файл сохранён:", file_path)
+    
     print(response.text)
   
 
