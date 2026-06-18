@@ -324,9 +324,9 @@ def main() -> None:
     application.add_error_handler(error_handler)
 
     # Параметры по умолчанию.
-    application.bot_data["categories_limit"] = 10
+    application.bot_data["categories_limit"] = 30
     application.bot_data["categories_offset"] = 0
-    application.bot_data["channels_limit"] = 10
+    application.bot_data["channels_limit"] = 30
     application.bot_data["channels_offset"] = 0
 
     application.run_polling(close_loop=False)
