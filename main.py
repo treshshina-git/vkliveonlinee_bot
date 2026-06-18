@@ -310,7 +310,7 @@ async def show_channels_for_category(query, context: ContextTypes.DEFAULT_TYPE, 
         webapp_url = f"https://vkliveonline.up.railway.app/player"
         #print(webapp_url)
 
-        namer = f"▶ {name} - {view}"
+        namer = f"▶ {name:<30} - {view:.^15}"
         current_row.append(
             InlineKeyboardButton(
                 text = namer
