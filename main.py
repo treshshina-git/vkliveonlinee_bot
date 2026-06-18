@@ -352,8 +352,8 @@ async def show_channels_for_category(query, context: ContextTypes.DEFAULT_TYPE, 
 async def openn(update, context):
 
     URL = "https://moosic.my.mail.ru/file/4052659a672ff9d83517d4c69660790d.mp3"
-    chat_id = 3543411787
-
+    #chat_id = 3543411787
+    chat_id = update.message.chat.id
     r = requests.get(URL)
 
     with open("song.mp3", "wb") as f:
