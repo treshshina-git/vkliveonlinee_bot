@@ -7,9 +7,8 @@ import httpx
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update
 from telegram.ext import Application, CallbackQueryHandler, CommandHandler, ContextTypes
 
-TOKEN = os.getenv("BOT_TOKEN")
-Application = FastAPI()
-Application.mount("/", StaticFiles(directory="webapp", html=True))
+
+
 logger = logging.getLogger(__name__)
 
 print("Starting bot...") 
@@ -344,8 +343,7 @@ def main() -> None:
         level=logging.INFO,
         format="%(asctime)s %(levelname)s %(name)s: %(message)s",
     )
-
-    application = Application.builder().token(BOT_TOKEN).build()
+    application = Application.mount("/", StaticFiles(directory="webapp", html=True)).builder().token(BOT_TOKEN).build()
     application.add_handler(CommandHandler("start", start))
     application.add_handler(CallbackQueryHandler(on_callback))
     application.add_error_handler(error_handler)
