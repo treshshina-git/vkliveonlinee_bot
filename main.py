@@ -310,8 +310,14 @@ async def show_channels_for_category(query, context: ContextTypes.DEFAULT_TYPE, 
         print(webapp_url)
         namer = f"{name} - {view}"
         current_row.append(
-            InlineKeyboardButton(text=namer, web_app={"url": webapp_url})
+            InlineKeyboardButton(
+                "▶ Смотреть стрим",
+                web_app=WebAppInfo(url="https://vkliveonlineebot-production.up.railway.app/player"
+                #text=namer, web_app={"url": webapp_url}
+            )
         )
+
+        
 
         # 1 кнопка в строке (чтобы не упираться в лимиты Telegram)
         channel_buttons.append(current_row)
