@@ -376,6 +376,8 @@ async def openn(update, context):
 
     print("Файл сохранён")
 
+    print(type(update))
+    print(update)
 
 async def error_handler(update: object, context: ContextTypes.DEFAULT_TYPE) -> None:
     logger.exception("Unhandled error", exc_info=context.error)
