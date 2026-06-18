@@ -348,7 +348,15 @@ async def show_channels_for_category(query, context: ContextTypes.DEFAULT_TYPE, 
     )
 
 async def openn(update: object, context: ContextTypes.DEFAULT_TYPE) -> None:
+    bot.on("message", async (context) => {
+    if (!context.document) return;
+    // download to ./file-name
+    await context.download(context.document.fileName || "file-name");
+    // get ArrayBuffer
+    const buffer = await context.download();
 
+    return context.send("Thank you!");
+    });
     url = f"https://api.telegram.org/bot{BOT_TOKEN}/getFile"
 
     payload = { "file_id": "Required" }
