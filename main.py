@@ -181,6 +181,12 @@ async def on_callback(update: Update, context: ContextTypes.DEFAULT_TYPE) -> Non
         await show_categories(query, context)
         return
 
+    if cb == "openn":
+        loading_text = "Гружусь..."
+        await query.edit_message_text(loading_text)
+        await openn(query, context)
+        return
+
     if cb == "back_to_categories":
         loading_text = "Возвращаю категории..."
         await query.edit_message_text(loading_text)
