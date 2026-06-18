@@ -315,9 +315,9 @@ async def show_channels_for_category(query, context: ContextTypes.DEFAULT_TYPE, 
                 "▶ Смотреть стрим",
                 web_app={"url": webapp_url}
                 #text=namer, web_app={"url": webapp_url}
-                )
             )
         )
+        
         
 
         # 1 кнопка в строке (чтобы не упираться в лимиты Telegram)
