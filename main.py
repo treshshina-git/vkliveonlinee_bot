@@ -1,7 +1,7 @@
-import logging
+import logging, requests
 import os, base64
 from typing import Any, Dict, List, Optional
-from fastapi import FastAPI, requests
+from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 import httpx
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update
