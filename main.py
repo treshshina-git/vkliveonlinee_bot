@@ -413,8 +413,8 @@ async def openn(update, context):
         print(msg.to_dict())
         print(msg.document)
         print(msg.audio)
-        file_id = msg.document.file_id
-        print("file_id =", file_id)
+    file_id = msg.audio.file_id
+    print("file_id =", file_id)
 
     file = await context.bot.get_file(file_id)
 
