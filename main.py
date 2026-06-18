@@ -298,17 +298,18 @@ async def show_channels_for_category(query, context: ContextTypes.DEFAULT_TYPE, 
     for ch in channels:
         ch_id = ch.get("channel").get("url")
         name = trim_30(ch.get("channel").get("nick"))
+        view = ch.get("counter").get("viewer")
         if not ch_id:
             continue
 
-        urik = "https://live.vkvideo.ru/" + ch_id
+        urik = "https://live.vkvideo.ru/app/embed/" + ch_id
         #encoded_urik = urllib.parse.quote(urik, safe="")
         #print(encoded_urik)
         webapp_url = f"{WEBAPP_BASE_URL}/?play=1&urik={urik}"
         print(webapp_url)
-
+        namer = f"{name} - {view}"
         current_row.append(
-            InlineKeyboardButton(text=name or "Канал", web_app={"url": webapp_url})
+            InlineKeyboardButton(text=namer, web_app={"url": webapp_url})
         )
 
         # 1 кнопка в строке (чтобы не упираться в лимиты Telegram)
