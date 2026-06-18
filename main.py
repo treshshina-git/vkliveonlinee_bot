@@ -313,8 +313,8 @@ async def show_channels_for_category(query, context: ContextTypes.DEFAULT_TYPE, 
         namer = f"▶ {name} - {view}"
         current_row.append(
             InlineKeyboardButton(
-                text = namer,
-                web_app={"url": webapp_url}
+                text = namer
+                
                 #text=namer, web_app={"url": webapp_url}
             )
         )
