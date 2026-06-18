@@ -308,11 +308,11 @@ async def show_channels_for_category(query, context: ContextTypes.DEFAULT_TYPE, 
         #print(encoded_urik)
         #webapp_url = f"{WEBAPP_BASE_URL}/?play=1&urik={urik}"
         webapp_url = f"https://vkliveonlineebot-production.up.railway.app/player"
-        print(webapp_url)
+        #print(webapp_url)
         namer = f"{name} - {view}"
         current_row.append(
             InlineKeyboardButton(
-                "▶ Смотреть стрим",
+                "▶ {namer}",
                 web_app={"url": webapp_url}
                 #text=namer, web_app={"url": webapp_url}
             )
