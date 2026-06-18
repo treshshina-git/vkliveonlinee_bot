@@ -6,7 +6,8 @@ from fastapi.staticfiles import StaticFiles
 import httpx
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update
 from telegram.ext import Application, CallbackQueryHandler, CommandHandler, ContextTypes
-
+import re
+from bs4 import BeautifulSoup
 
 logger = logging.getLogger(__name__)
 
@@ -350,6 +351,41 @@ async def show_channels_for_category(query, context: ContextTypes.DEFAULT_TYPE, 
 
 
 async def openn(update, context):
+
+
+
+    url = "https://my.mail.ru/music/artists/Miyagi"  
+    response = requests.get(url)
+    html_content = response.text
+
+
+    soup = BeautifulSoup(html_content, "html.parser")
+
+
+    scripts = soup.find_all("script")
+
+
+    variable_name = "data-song"
+
+
+    pattern = rf'\b{variable_name}\s*=\s*([^;]+);'
+
+    found_values = []
+
+
+    for script in scripts:
+        if script.string:  
+
+            match = re.search(pattern, script.string)
+            if match:
+
+                value = match.group(1).strip()
+                found_values.append(value)
+
+    if found_values:
+        print(f"Найденные значения для {variable_name}: {found_values}")
+    else:
+        print(f"Переменная '{variable_name}' не найдена.")
 
     URL = "https://moosic.my.mail.ru/file/4052659a672ff9d83517d4c69660790d.mp3"
     #chat_id = 3543411787
