@@ -281,7 +281,7 @@ async def show_channels_for_category(query, context: ContextTypes.DEFAULT_TYPE, 
     )
 
     # base URL вашего webapp (должен быть https)
-    WEBAPP_BASE_URL = "https://vkonline-production.up.railway.app"
+    WEBAPP_BASE_URL = "https://vkliveonlineebot-production.up.railway.app"
     #print(text)
     # Вырежем HTML-теги, чтобы не было «полузакликаных» ссылок
     #text = text.replace("<a ", "").replace("</a>", "")
