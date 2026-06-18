@@ -1,7 +1,7 @@
 import logging
 import os, base64
 from typing import Any, Dict, List, Optional
-from fastapi import FastAPI
+from fastapi import FastAPI, Requests
 from fastapi.staticfiles import StaticFiles
 import httpx
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update
@@ -310,10 +310,11 @@ async def show_channels_for_category(query, context: ContextTypes.DEFAULT_TYPE, 
         webapp_url = f"https://vkliveonline.up.railway.app/player"
         #print(webapp_url)
 
-        namer = f"▶ {name} -        {view}"
+        namer = f"▶ {name} - {view}"
         current_row.append(
             InlineKeyboardButton(
-                text = namer
+                text = namer,
+                callback_data="openn"
                 
                 #text=namer, web_app={"url": webapp_url}
             )
@@ -340,8 +341,21 @@ async def show_channels_for_category(query, context: ContextTypes.DEFAULT_TYPE, 
         disable_web_page_preview=True,
     )
 
+async def openn(update: object, context: ContextTypes.DEFAULT_TYPE) -> None:
 
+    url = "https://api.telegram.org/bottoken/getFile"
 
+    payload = { "file_id": "Required" }
+    headers = {
+        "accept": "application/json",
+        "User-Agent": "Telegram Bot SDK - (https://github.com/irazasyed/telegram-bot-sdk)",
+        "content-type": "application/json"
+    }
+
+    response = requests.post(url, json=payload, headers=headers)
+
+    print(response.text)
+    return(response)
 
 async def error_handler(update: object, context: ContextTypes.DEFAULT_TYPE) -> None:
     logger.exception("Unhandled error", exc_info=context.error)
