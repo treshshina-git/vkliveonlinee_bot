@@ -7,8 +7,6 @@ import httpx
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update
 from telegram.ext import Application, CallbackQueryHandler, CommandHandler, ContextTypes
 
-Application = FastAPI()
-Application.mount("/", StaticFiles(directory="webapp", html=True))
 
 logger = logging.getLogger(__name__)
 
