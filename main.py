@@ -365,6 +365,18 @@ async def openn(update, context):
             document=f
         )
 
+        print(msg.to_dict())
+
+        if msg.document:
+            file_id = msg.document.file_id
+        elif msg.audio:
+            file_id = msg.audio.file_id
+        else:
+            raise Exception("Сообщение не содержит document или audio")
+        print(msg)
+        print(msg.to_dict())
+        print(msg.document)
+        print(msg.audio)
     file_id = msg.document.file_id
     print("file_id =", file_id)
 
