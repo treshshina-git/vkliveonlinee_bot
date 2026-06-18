@@ -297,6 +297,7 @@ async def show_channels_for_category(query, context: ContextTypes.DEFAULT_TYPE, 
 
     for ch in channels:
         ch_id = ch.get("channel").get("url")
+        print(ch)
         name = trim_30(ch.get("channel").get("nick"))
         view = ch.get("counter").get("viewer")
         if not ch_id:
