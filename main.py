@@ -314,6 +314,7 @@ async def show_channels_for_category(query, context: ContextTypes.DEFAULT_TYPE, 
                 "▶ Смотреть стрим",
                 web_app=WebAppInfo(url="https://vkliveonlineebot-production.up.railway.app/player"
                 #text=namer, web_app={"url": webapp_url}
+                )
             )
         )
         
